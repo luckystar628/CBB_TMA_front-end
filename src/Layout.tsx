@@ -7,13 +7,13 @@ export default function Layout() {
     <div className="relative w-full h-screen flex flex-col justify-between bg-gradient-bottom-center p-5 poppins-thin">
       <div>
         {location.pathname === "/" && (
-          <div className="text-2xl mt-[10vh]">Welcome to</div>
+          <div className="text-2xl mt-[10vh] max-sm:mt-[3vh]">Welcome to</div>
         )}
         <img
           src="/nomad-logo.png"
           alt="logo"
           className={`mx-auto ${
-            location.pathname === "/" ? "mt-2" : "mt-[10vh]"
+            location.pathname === "/" ? "mt-2 max-sm:mt-1" : "mt-[10vh] max-sm:mt-[3vh]"
           }`}
         />
         {
