@@ -5,6 +5,7 @@ import DailyReport from "./page/DailyReport";
 import Friends from "./page/Friends";
 import Ranking from "./page/Ranking";
 import Welcome from "./page/Welcome";
+import Layout from "./Layout";
 
 import "./App.css";
 
@@ -12,11 +13,13 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Welcome />} />
-        <Route path="/daily" element={<DailyReport />} />
-        <Route path="/rank" element={<Ranking />} />
-        <Route path="/friends" element={<Friends />} />
-        <Route path="/airdrop" element={<Airdrop />} />
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Welcome />} />
+          <Route path="daily" element={<DailyReport />} />
+          <Route path="rank" element={<Ranking />} />
+          <Route path="friends" element={<Friends />} />
+          <Route path="airdrop" element={<Airdrop />} />
+        </Route>
       </Routes>
     </Router>
   );
