@@ -16,9 +16,9 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Welcome />} />
           <Route path="daily" element={<DailyReport />} />
-          <Route path="rank" element={<Ranking />} />
           <Route path="friends" element={<Friends />} />
           <Route path="airdrop" element={<Airdrop />} />
+          <Route path="*" element={<Ranking />} />
         </Route>
       </Routes>
     </Router>
