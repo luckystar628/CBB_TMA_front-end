@@ -10,7 +10,7 @@ export default function Welcome() {
           return <AnnounceItem key={index} {...item} />
         })
       }
-      <Link to="/daily" className="text-center bg-white py-5 rounded-md hover:opacity-80 active:opacity-50">get started</Link>
+      <Link to="/daily" className="text-center bg-white py-5 text-black hover:text-black rounded-md hover:opacity-80 active:opacity-50">get started</Link>
     </div>
   )
 }
