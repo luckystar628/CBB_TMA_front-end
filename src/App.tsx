@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Airdrop from "./page/Airdrop";
 import DailyReport from "./page/DailyReport";
