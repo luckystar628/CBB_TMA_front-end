@@ -1,7 +1,16 @@
 
+import { Link } from 'react-router-dom'
+import {AnnounceList} from '../assets/const'
+import AnnounceItem from '../component/AnnounceItem'
 export default function Welcome() {
   return (
-    <div className="">
+    <div className="mt-5 w-[90%] mx-auto gap-5 flex flex-col">
+      {
+        AnnounceList.map((item, index) => {
+          return <AnnounceItem key={index} {...item} />
+        })
+      }
+      <Link to="/daily" className="text-center bg-white py-5 rounded-md hover:opacity-80 active:opacity-50">get started</Link>
     </div>
   )
 }

@@ -1,4 +1,5 @@
 import { Outlet, useLocation } from "react-router-dom"
+import Footer from "./component/Footer"
 export default function Layout() {
   const location = useLocation()
 
@@ -8,6 +9,7 @@ export default function Layout() {
         <img src="/nomad-logo.png" alt="logo" className={`mx-auto ${location.pathname === '/' ? "mt-2" : "mt-[10vh]"}`} />
         {<div className="text-xl font-light mt-1">{location.pathname !== '/airdrop' ? "daily" : "daily airdrop"}</div>}
         <Outlet />
+        {location.pathname !== '/' && <Footer />}
     </div>
   )
 }
