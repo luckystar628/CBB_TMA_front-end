@@ -48,10 +48,10 @@ export default function DailyReport() {
                 return (
                   <div
                     key={index}
-                    className={`transition ease-in-out cursor-pointer p-5 rounded-xl border-[#ffffff33] border-2 ${
+                    className={`transition shadow-lg ease-in-out cursor-pointer p-5 rounded-xl border-2 hover:bg-opacity-60 active:bg-opacity-50 ${
                       selectedOption === index
                         ? "bg-[#1A1A1A] bg-opacity-100 border-[#1A1A1A]"
-                        : "bg-[#625f63] bg-opacity-30"
+                        : "bg-[#625f63] bg-opacity-30 border-[#ffffff33]"
                     }`}
                     onClick={() => setSelectedOption(index)}
                   >
