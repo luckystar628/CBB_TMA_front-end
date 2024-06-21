@@ -13,7 +13,7 @@ export default function Welcome() {
 
   useEffect(() => {
     const webapp = (window as any).Telegram?.WebApp.initDataUnsafe;
-    if (webapp && webapp["user"]) {
+    if (webapp) {
       // setUser({
       //   username: webapp["user"]["username"],
       //   id: webapp["user"]["id"],
