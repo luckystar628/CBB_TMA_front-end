@@ -1,32 +1,9 @@
-import { useEffect } from "react";
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 // import axios from "axios";
 
-import { useGlobalContext } from "./context/GlobalContext";
 import Footer from "./component/Footer";
 
 export default function Layout() {
-  const backend = import.meta.env.VITE_BACKEND;
-  const location = useLocation();
-  const { user } = useGlobalContext();
-
-  useEffect(() => {
-    const webapp = (window as any).Telegram?.WebApp.initDataUnsafe;
-    if (webapp && webapp["user"]) {
-      // setUser({
-      //   username: webapp["user"]["username"],
-      //   id: webapp["user"]["id"],
-      //   score: 0,
-      //   isInvited: false,
-      // });
-      console.log("webapp", webapp["user"], backend);
-      // loginUser();
-    }
-  }, []);
-
-  useEffect(() => {
-    console.log("=========>user", user);
-  }, [user]);
 
   // const loginUser = async () => {
   //   axios
