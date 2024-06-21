@@ -7,7 +7,7 @@ import { useEffect } from "react";
 
 import { useGlobalContext } from "../context/GlobalContext";
 export default function Welcome() {
-  const backend = import.meta.env.VITE_BACKEND;
+  const backend = import.meta.env.VITE_BACKEND_URL;
 
   const { user } = useGlobalContext();
 
