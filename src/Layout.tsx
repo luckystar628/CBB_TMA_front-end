@@ -1,8 +1,10 @@
+import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
+import axios from "axios";
+
 import { useGlobalContext } from "./context/GlobalContext";
 import Footer from "./component/Footer";
-import { useEffect } from "react";
-import axios from "axios";
+
 export default function Layout() {
   const backend = import.meta.env.VITE_BACKEND;
   const location = useLocation();
@@ -16,8 +18,8 @@ export default function Layout() {
         score: 0,
         isInvited: false,
       });
-      console.log("webapp", webapp["user"]);
-      loginUser();
+      console.log("webapp", webapp["user"], backend);
+      // loginUser();
     }
   }, []);
 
@@ -25,19 +27,19 @@ export default function Layout() {
     console.log("=========>user", user);
   }, [user]);
 
-  const loginUser = async () => {
-    axios
-      .post(`${backend}/user/login`, {
-        id: user.id,
-        username: user.username,
-      })
-      .then((res: any) => {
-        console.log("res", res);
-      })
-      .catch((err: any) => {
-        console.log("err", err);
-      });
-  };
+  // const loginUser = async () => {
+  //   axios
+  //     .post(`${backend}/user/login`, {
+  //       id: user.id,
+  //       username: user.username,
+  //     })
+  //     .then((res: any) => {
+  //       console.log("res", res);
+  //     })
+  //     .catch((err: any) => {
+  //       console.log("err", err);
+  //     });
+  // };
 
   return (
     <div className="relative w-full h-screen flex flex-col justify-between bg-gradient-bottom-center p-5 poppins-thin">
