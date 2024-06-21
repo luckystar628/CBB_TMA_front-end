@@ -15,6 +15,7 @@ export default function Layout() {
         isInvited: false,
       })
     } 
+    console.log("webapp", webapp)
   }, [])
 
   useEffect(() => {
