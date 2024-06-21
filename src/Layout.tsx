@@ -8,16 +8,17 @@ import Footer from "./component/Footer";
 export default function Layout() {
   const backend = import.meta.env.VITE_BACKEND;
   const location = useLocation();
-  const { setUser, user } = useGlobalContext();
+  const { user } = useGlobalContext();
+
   useEffect(() => {
     const webapp = (window as any).Telegram?.WebApp.initDataUnsafe;
     if (webapp && webapp["user"]) {
-      setUser({
-        username: webapp["user"]["username"],
-        id: webapp["user"]["id"],
-        score: 0,
-        isInvited: false,
-      });
+      // setUser({
+      //   username: webapp["user"]["username"],
+      //   id: webapp["user"]["id"],
+      //   score: 0,
+      //   isInvited: false,
+      // });
       console.log("webapp", webapp["user"], backend);
       // loginUser();
     }
