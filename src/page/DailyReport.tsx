@@ -21,9 +21,9 @@ export default function DailyReport() {
     }
   }, []);
   return (
-    <div className="px-8 py-2">
+    <div className="px-8 py-2 max-sm:px-0 grow">
       {isCompleted ? (
-        <div className="flex flex-col gap-10">
+        <div className="flex flex-col gap-10 max-sm:gap-6">
           <div className="text-xl font-[600]">
             congratulations! you earned <br />
             <span className="text-2xl font-bold">3 coins</span>
