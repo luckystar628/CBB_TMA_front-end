@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
-import axios from "axios";
+// import axios from "axios";
 
 import { useGlobalContext } from "./context/GlobalContext";
 import Footer from "./component/Footer";
