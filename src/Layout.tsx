@@ -16,9 +16,9 @@ export default function Layout() {
         score: 0,
         isInvited: false,
       });
+      console.log("webapp", webapp["user"]);
       loginUser();
     }
-    console.log("webapp", webapp["user"]);
   }, []);
 
   useEffect(() => {
@@ -27,7 +27,10 @@ export default function Layout() {
 
   const loginUser = async () => {
     axios
-      .post(`${backend}/api/login`)
+      .post(`${backend}/user/login`, {
+        id: user.id,
+        username: user.username,
+      })
       .then((res: any) => {
         console.log("res", res);
       })
