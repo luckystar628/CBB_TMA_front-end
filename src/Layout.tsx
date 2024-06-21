@@ -2,7 +2,9 @@ import { Outlet, useLocation } from "react-router-dom";
 import { useGlobalContext } from "./context/GlobalContext";
 import Footer from "./component/Footer";
 import { useEffect } from "react";
+import axios from "axios";
 export default function Layout() {
+  const backend = import.meta.env.VITE_BACKEND;
   const location = useLocation();
   const { setUser, user } = useGlobalContext();
   useEffect(() => {
@@ -13,14 +15,26 @@ export default function Layout() {
         id: webapp["user"]["id"],
         score: 0,
         isInvited: false,
-      })
-    } 
-    console.log("webapp", webapp)
-  }, [])
+      });
+      loginUser();
+    }
+    console.log("webapp", webapp["user"]);
+  }, []);
 
   useEffect(() => {
     console.log("=========>user", user);
-  }, [user])
+  }, [user]);
+
+  const loginUser = async () => {
+    axios
+      .post(`${backend}/api/login`)
+      .then((res: any) => {
+        console.log("res", res);
+      })
+      .catch((err: any) => {
+        console.log("err", err);
+      });
+  };
 
   return (
     <div className="relative w-full h-screen flex flex-col justify-between bg-gradient-bottom-center p-5 poppins-thin">
@@ -32,7 +46,9 @@ export default function Layout() {
           src="/nomad-logo.png"
           alt="logo"
           className={`mx-auto ${
-            location.pathname === "/" ? "mt-2 max-sm:mt-1" : "mt-[10vh] max-sm:mt-[3vh]"
+            location.pathname === "/"
+              ? "mt-2 max-sm:mt-1"
+              : "mt-[10vh] max-sm:mt-[3vh]"
           }`}
         />
         {
