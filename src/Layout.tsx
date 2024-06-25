@@ -20,7 +20,7 @@ export default function Layout() {
     if(!userData) return
     axios
       .post(`${backend}/user/login`, {
-        id: JSON.parse(userData).id,
+        telID: JSON.parse(userData).id,
         username: JSON.parse(userData).username,
       })
       .then((res: any) => {
