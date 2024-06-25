@@ -1,24 +1,35 @@
 import { Outlet, useLocation } from "react-router-dom";
-// import axios from "axios";
+import axios from "axios";
 
 import Footer from "./component/Footer";
+import { useEffect } from "react";
+import WebApp from '@twa-dev/sdk';
 
 export default function Layout() {
   const location = useLocation();
+  const params = new URLSearchParams(WebApp.initData);
+  const backend = import.meta.env.VITE_BACKEND_URL;
+  const userData = params.get('user');
 
-  // const loginUser = async () => {
-  //   axios
-  //     .post(`${backend}/user/login`, {
-  //       id: user.id,
-  //       username: user.username,
-  //     })
-  //     .then((res: any) => {
-  //       console.log("res", res);
-  //     })
-  //     .catch((err: any) => {
-  //       console.log("err", err);
-  //     });
-  // };
+  useEffect(() => {
+    loginUser();
+    console.log("userData", userData);
+  }, [userData]);
+
+  const loginUser = async () => {
+    if(!userData) return
+    axios
+      .post(`${backend}/user/login`, {
+        id: JSON.parse(userData).id,
+        username: JSON.parse(userData).username,
+      })
+      .then((res: any) => {
+        console.log("res", res);
+      })
+      .catch((err: any) => {
+        console.log("err", err);
+      });
+  };
 
   return (
     <div className="relative w-full h-screen flex flex-col justify-between bg-gradient-bottom-center p-5 poppins-thin">
