@@ -81,7 +81,7 @@ export default function DailyReport() {
           </div>
           <div
             className="mt-10 max-sm:mt-5 max-sm:py-3 text-center bg-white py-5 rounded-md hover:opacity-80 active:opacity-50 text-black cursor-pointer"
-            onClick={() => handleSubmit(selectedOption)}
+            onClick={() => handleSubmit()}
           >
             submit
           </div>
