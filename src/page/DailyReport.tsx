@@ -1,21 +1,39 @@
 import { useEffect, useState } from "react";
 import ShareReferral from "../component/ShareReferral";
+import { useGlobalContext } from "../context/GlobalContext";
 import axios from "axios";
 
 export default function DailyReport() {
+  const { user } = useGlobalContext();
   const backend = import.meta.env.VITE_BACKEND_URL;
   const [todaysData, setTodaysData] = useState<any>({});
   const [selectedOption, setSelectedOption] = useState<number>(0);
   const [isCompleted, setIsCompleted] = useState<boolean>(false);
   useEffect(() => {
     axios.get(`${backend}/question/get`).then((res: any) => {
-
-      console.log(res);
       res.data && setTodaysData(res.data.question);
     }).catch((err: any) => {
       console.log(err);
     });
   }, []);
+
+  const handleSubmit = async () => {
+    axios
+      .post(`${backend}/question/setresult`, {
+        telID: user.id,
+        date: todaysData.date,
+        question: todaysData.question,
+        result: todaysData.options[selectedOption],
+      })
+      .then((res: any) => {
+        console.log("res", res);
+        setIsCompleted(true);
+      })
+      .catch((err: any) => {
+        console.log("err", err);
+      });
+  };
+
   return (
     <div className="px-8 py-2 max-sm:px-0 grow">
       {isCompleted ? (
@@ -63,7 +81,7 @@ export default function DailyReport() {
           </div>
           <div
             className="mt-10 max-sm:mt-5 max-sm:py-3 text-center bg-white py-5 rounded-md hover:opacity-80 active:opacity-50 text-black cursor-pointer"
-            onClick={() => setIsCompleted(true)}
+            onClick={() => handleSubmit(selectedOption)}
           >
             submit
           </div>

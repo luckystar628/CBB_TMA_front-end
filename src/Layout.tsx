@@ -3,9 +3,11 @@ import axios from "axios";
 
 import Footer from "./component/Footer";
 import { useEffect } from "react";
+import { useGlobalContext } from "./context/GlobalContext";
 import WebApp from '@twa-dev/sdk';
 
 export default function Layout() {
+  const { setUser } = useGlobalContext();
   const location = useLocation();
   const params = new URLSearchParams(WebApp.initData);
   const backend = import.meta.env.VITE_BACKEND_URL;
@@ -18,6 +20,12 @@ export default function Layout() {
 
   const loginUser = async () => {
     if(!userData) return
+    setUser({
+      username: JSON.parse(userData).username,
+      score: 0,
+      id: JSON.parse(userData).id,
+      isInvited: false,
+    })
     axios
       .post(`${backend}/user/login`, {
         telID: JSON.parse(userData).id,
