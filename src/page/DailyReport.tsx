@@ -10,7 +10,7 @@ export default function DailyReport() {
   const [selectedOption, setSelectedOption] = useState<number>(0);
   const [isCompleted, setIsCompleted] = useState<boolean>(false);
   useEffect(() => {
-    axios.get(`${backend}/question/get/:id`, { params: { id: user.id } }).then((res: any) => {
+    axios.get(`${backend}/question/get/${user.id}`).then((res: any) => {
       res.data && setTodaysData(res.data.question);
     }).catch((err: any) => {
       console.log(err);
