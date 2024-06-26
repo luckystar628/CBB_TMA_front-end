@@ -40,9 +40,8 @@ export default function DailyReport() {
           </div>
           <div className="gap-5 mt-5 flex flex-col overflow scrollbar-hidden">
             {todaysData &&
-              todaysData.question &&
-              todaysData.question.options &&
-              todaysData.question.options.map(
+              todaysData.options &&
+              todaysData.options.map(
                 (option: string, index: number) => {
                   return (
                     <div
