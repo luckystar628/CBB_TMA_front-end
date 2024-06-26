@@ -4,14 +4,16 @@ import axios from "axios";
 
 export default function DailyReport() {
   const backend = import.meta.env.VITE_BACKEND_URL;
-
   const [todaysData, setTodaysData] = useState<any>({});
   const [selectedOption, setSelectedOption] = useState<number>(0);
   const [isCompleted, setIsCompleted] = useState<boolean>(false);
   useEffect(() => {
-    axios.get(`${backend}/question/get`).then((res) => {
-      console.log(res.data);
-      setTodaysData(res.data);
+    axios.get(`${backend}/question/get`).then((res: any) => {
+
+      console.log(res);
+      res.data && setTodaysData(res.data.question);
+    }).catch((err: any) => {
+      console.log(err);
     });
   }, []);
   return (
@@ -36,7 +38,7 @@ export default function DailyReport() {
         <>
           {" "}
           <div className="text-2xl max-sm:text-[16px]">
-            {todaysData.question || "Loading..."}
+            {todaysData ? todaysData.question : "Loading..."}
           </div>
           <div className="gap-5 mt-5 flex flex-col overflow scrollbar-hidden">
             {todaysData &&
