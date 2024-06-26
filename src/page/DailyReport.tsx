@@ -1,24 +1,17 @@
 import { useEffect, useState } from "react";
-import data from "../assets/questions.json";
 import ShareReferral from "../component/ShareReferral";
+import axios from "axios";
 
 export default function DailyReport() {
+  const backend = import.meta.env.VITE_BACKEND_URL;
+
   const [todaysData, setTodaysData] = useState<any>({});
   const [selectedOption, setSelectedOption] = useState<number>(0);
   const [isCompleted, setIsCompleted] = useState<boolean>(false);
   useEffect(() => {
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = String(today.getMonth() + 1).padStart(2, "0"); // Months are 0-indexed, so we add 1 and pad with a zero if necessary
-    const day = String(today.getDate()).padStart(2, "0"); // padStart ensures the day is two digits
-    const formattedDate = `${year}-${month}-${day}`;
-    console.log(formattedDate);
-    if (data) {
-      if ((data as any)[formattedDate]) {
-        console.log((data as any)[formattedDate]);
-        setTodaysData((data as any)[formattedDate]);
-      }
-    }
+    axios.get(`${ backend }/question/get`).then((res) => {
+      setTodaysData(res.data);
+    })
   }, []);
   return (
     <div className="px-8 py-2 max-sm:px-0 grow">
@@ -43,8 +36,8 @@ export default function DailyReport() {
           {" "}
           <div className="text-2xl max-sm:text-[16px]">{todaysData.question || "Loading..."}</div>
           <div className="gap-5 mt-5 flex flex-col overflow scrollbar-hidden">
-            {todaysData.options &&
-              todaysData.options.map((option: string, index: number) => {
+            {todaysData.question.options &&
+              todaysData.question.options.map((option: string, index: number) => {
                 return (
                   <div
                     key={index}
