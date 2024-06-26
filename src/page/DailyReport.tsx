@@ -13,6 +13,7 @@ export default function DailyReport() {
     axios.get(`${backend}/question/get/${user.id}`).then((res: any) => {
       res.data && setTodaysData(res.data.question);
     }).catch((err: any) => {
+      setIsCompleted(true);
       console.log(err);
     });
   }, []);
