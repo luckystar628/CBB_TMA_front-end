@@ -538,6 +538,11 @@
   resolved "https://registry.npmjs.org/@rollup/rollup-win32-x64-msvc/-/rollup-win32-x64-msvc-4.18.0.tgz"
   integrity sha512-UOo5FdvOL0+eIVTgS4tIdbW+TtnBLWg1YBCcU2KWM7nuNwRz9bksDX1bekJJCpu25N1DVWaCwnT39dVQxzqS8g==
 
+"@tma.js/sdk@^2.5.1":
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/@tma.js/sdk/-/sdk-2.5.1.tgz#36c7b06f05a858476fb25ac7861a421f5fb907ea"
+  integrity sha512-uUFv3oINGRwkh4KbGxMq9OxDdSQOhH9O45i9i0aqen6pIakeiIxxzrF8Yhv2xSFWrn8V+gaOpr3IDrushlo5TA==
+
 "@twa-dev/sdk@^7.0.0":
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/@twa-dev/sdk/-/sdk-7.0.0.tgz#6d4dafe856efbe188bd09e1bb286d5af8ec80d67"

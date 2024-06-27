@@ -1,7 +1,16 @@
 import { useState, useEffect } from "react";
 import { rankingList } from "../assets/const";
 import ShareReferral from "../component/ShareReferral";
+import { initUtils } from '@tma.js/sdk';
+
 export default function Friends() {
+  const utils = initUtils();
+  const openTelegram = () => {
+    utils.openTelegramLink(
+      'https://t.me/share/url?url=https://t.me/catizenbot/gameapp?startapp=rp_1365932&text=%F0%9F%92%B0Catizen%3A%20Unleash%2C%20Play%2C%20Earn%20-%20Where%20Every%20Game%20Leads%20to%20an%20Airdrop%20Adventure!%0A%F0%9F%8E%81Let%27s%20play-to-earn%20airdrop%20right%20now!'
+    );
+  }
+
   // const [tab, setTab] = useState(0);
   const [user, setUser] = useState<any>({});
   // const handleTab = (index: number) => {
@@ -79,6 +88,7 @@ export default function Friends() {
                   className={`mx-5 max-sm:ml-0 w-6 h-6 ${
                     !item.isInvited && "cursor-pointer"
                   }`}
+                  onClick={() => { !item.isInvited && openTelegram(); }}
                 />
               </div>
             ))
