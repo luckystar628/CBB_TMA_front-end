@@ -1,18 +1,52 @@
 import { useState, useEffect } from "react";
-import { rankingList } from "../assets/const";
 import ShareReferral from "../component/ShareReferral";
+import { useGlobalContext } from "../context/GlobalContext";
+import axios from "axios";
+
 export default function Ranking() {
+  const { user } = useGlobalContext();
+  const backend = import.meta.env.VITE_BACKEND_URL;
   const [tab, setTab] = useState(0);
-  const [user, setUser] = useState<any>({});
+  const [currentUser, setCurrentUser] = useState<any>({});
+  const [rankingList, setRankingList] = useState<any>([]);
   const handleTab = (index: number) => {
     setTab(index);
   };
   useEffect(() => {
-    const newUser = rankingList.find(
-      (item) => item.username === "@currentuser"
-    );
-    setUser(newUser);
-  }, []);
+    if (rankingList && rankingList.length > 0) {
+      const newUser = rankingList.find(
+        (item: any) => item.username === user.username
+      );
+      setCurrentUser(newUser);
+    }
+  }, [rankingList]);
+
+  useEffect(() => {
+    fetchRankingData(tab);
+  }, [tab]);
+
+  const fetchRankingData = async (tab: number) => {
+    axios
+      .get(
+        `${backend}/rank/${
+          tab === 0
+            ? "today"
+            : tab === 1
+            ? "thisweek"
+            : tab === 2
+            ? "thismonth"
+            : "alltime"
+        }`
+      )
+      .then((res: any) => {
+        console.log(res);
+        setRankingList(res.data.result);
+      })
+      .catch((error: any) => {
+        console.error(error);
+      });
+  };
+
   return (
     <>
       <div className="mx-10 max-sm:mx-0 mt-10 max-sm:mt-2 py-3 max-sm:py-2 rounded-md bg-[#232124] bg-opacity-30 border-[#ffffff33] border-2">
@@ -53,80 +87,69 @@ export default function Ranking() {
         </li>
       </ul>
       <div className="mx-10 max-sm:mx-0 overflow-auto scrollbar-hidden my-2">
-        {tab == 0
-          ? rankingList.map((item, index) => (
-              <div
-                className={`flex justify-between items-center mx-5 p-3 ${
-                  item.username === user.username &&
-                  "rounded-2xl bg-[#232124] bg-opacity-30 border-[#ffffff33] border-2"
-                }`}
-              >
-                <div>
-                  <span className="mr-3">{index + 1}.</span>
-                  <span>{item.username}</span>
-                </div>
-                <span>{item.score ? `${item.score} coins` : ""}</span>
+        {tab == 0 && rankingList.length > 0 ? (
+          rankingList.map((item: any, index: any) => (
+            <div
+              className={`flex justify-between items-center mx-5 p-3 ${
+                item.username === currentUser.username &&
+                "rounded-2xl bg-[#232124] bg-opacity-30 border-[#ffffff33] border-2"
+              }`}
+            >
+              <div>
+                <span className="mr-3">{index + 1}.</span>
+                <span>{item.username}</span>
               </div>
-            ))
-          : tab == 1
-          ? rankingList.map((item, index) => (
-              <div
-                className={`flex justify-between items-center mx-5 p-3 ${
-                  item.username === user.username &&
-                  "rounded-2xl bg-[#232124] bg-opacity-30 border-[#ffffff33] border-2"
-                }`}
-              >
-                <div>
-                  <span className="mr-3">{index + 1}.</span>
-                  <span>{item.username}</span>
-                </div>
-                <span>{item.score ? `${item.score} coins` : ""}</span>
+              <span>{item.score ? `${item.score} coins` : ""}</span>
+            </div>
+          ))
+        ) : tab == 1 && rankingList.length > 0 ? (
+          rankingList.map((item: any, index: any) => (
+            <div
+              className={`flex justify-between items-center mx-5 p-3 ${
+                item.username === currentUser.username &&
+                "rounded-2xl bg-[#232124] bg-opacity-30 border-[#ffffff33] border-2"
+              }`}
+            >
+              <div>
+                <span className="mr-3">{index + 1}.</span>
+                <span>{item.username}</span>
               </div>
-            ))
-          : tab == 2
-          ? rankingList.map((item, index) => (
-              <div
-                className={`flex justify-between items-center mx-5 p-3 ${
-                  item.username === user.username &&
-                  "rounded-2xl bg-[#232124] bg-opacity-30 border-[#ffffff33] border-2"
-                }`}
-              >
-                <div>
-                  <span className="mr-3">{index + 1}.</span>
-                  <span>{item.username}</span>
-                </div>
-                <span>{item.score ? `${item.score} coins` : ""}</span>
+              <span>{item.score ? `${item.score} coins` : ""}</span>
+            </div>
+          ))
+        ) : tab == 2 && rankingList.length > 0 ? (
+          rankingList.map((item: any, index: any) => (
+            <div
+              className={`flex justify-between items-center mx-5 p-3 ${
+                item.username === currentUser.username &&
+                "rounded-2xl bg-[#232124] bg-opacity-30 border-[#ffffff33] border-2"
+              }`}
+            >
+              <div>
+                <span className="mr-3">{index + 1}.</span>
+                <span>{item.username}</span>
               </div>
-            ))
-          : tab == 3
-          ? rankingList.map((item, index) => (
-              <div
-                className={`flex justify-between items-center mx-5 p-3 ${
-                  item.username === user.username &&
-                  "rounded-2xl bg-[#232124] bg-opacity-30 border-[#ffffff33] border-2"
-                }`}
-              >
-                <div>
-                  <span className="mr-3">{index + 1}.</span>
-                  <span>{item.username}</span>
-                </div>
-                <span>{item.score ? `${item.score} coins` : ""}</span>
+              <span>{item.score ? `${item.score} coins` : ""}</span>
+            </div>
+          ))
+        ) : tab == 3 && rankingList.length > 0 ? (
+          rankingList.map((item: any, index: any) => (
+            <div
+              className={`flex justify-between items-center mx-5 p-3 ${
+                item.username === currentUser.username &&
+                "rounded-2xl bg-[#232124] bg-opacity-30 border-[#ffffff33] border-2"
+              }`}
+            >
+              <div>
+                <span className="mr-3">{index + 1}.</span>
+                <span>{item.username}</span>
               </div>
-            ))
-          : rankingList.map((item, index) => (
-              <div
-                className={`flex justify-between items-center mx-5 p-3 ${
-                  item.username === user.username &&
-                  "rounded-2xl bg-[#232124] bg-opacity-30 border-[#ffffff33] border-2"
-                }`}
-              >
-                <div>
-                  <span className="mr-3">{index + 1}.</span>
-                  <span>{item.username}</span>
-                </div>
-                <span>{item.score ? `${item.score} coins` : ""}</span>
-              </div>
-            ))}
+              <span>{item.score ? `${item.score} coins` : ""}</span>
+            </div>
+          ))
+        ) : (
+          <div>Loading...</div>
+        )}
       </div>
       <div className="mb-10 max-sm:mx-0 mx-10">
         <ShareReferral />
