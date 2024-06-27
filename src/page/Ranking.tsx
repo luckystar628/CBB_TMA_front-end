@@ -83,7 +83,7 @@ export default function Ranking() {
           rankingList.map((item: any, index: any) => (
             <div
               className={`flex justify-between items-center mx-5 p-3 ${
-                item.username === user.username &&
+                item.username == user.username &&
                 "rounded-2xl bg-[#232124] bg-opacity-30 border-[#ffffff33] border-2"
               }`}
             >
@@ -98,7 +98,7 @@ export default function Ranking() {
           rankingList.map((item: any, index: any) => (
             <div
               className={`flex justify-between items-center mx-5 p-3 ${
-                item.username === user.username &&
+                item.username == user.username &&
                 "rounded-2xl bg-[#232124] bg-opacity-30 border-[#ffffff33] border-2"
               }`}
             >
@@ -113,7 +113,7 @@ export default function Ranking() {
           rankingList.map((item: any, index: any) => (
             <div
               className={`flex justify-between items-center mx-5 p-3 ${
-                item.username === user.username &&
+                item.username == user.username &&
                 "rounded-2xl bg-[#232124] bg-opacity-30 border-[#ffffff33] border-2"
               }`}
             >
@@ -128,7 +128,7 @@ export default function Ranking() {
           rankingList.map((item: any, index: any) => (
             <div
               className={`flex justify-between items-center mx-5 p-3 ${
-                item.username === user.username &&
+                item.username == user.username &&
                 "rounded-2xl bg-[#232124] bg-opacity-30 border-[#ffffff33] border-2"
               }`}
             >
