@@ -7,19 +7,10 @@ export default function Ranking() {
   const { user } = useGlobalContext();
   const backend = import.meta.env.VITE_BACKEND_URL;
   const [tab, setTab] = useState(0);
-  const [currentUser, setCurrentUser] = useState<any>({});
   const [rankingList, setRankingList] = useState<any>([]);
   const handleTab = (index: number) => {
     setTab(index);
   };
-  useEffect(() => {
-    if (rankingList && rankingList.length > 0) {
-      const newUser = rankingList.find(
-        (item: any) => item.username === user.username
-      );
-      setCurrentUser(newUser);
-    }
-  }, [rankingList]);
 
   useEffect(() => {
     fetchRankingData(tab);
@@ -91,7 +82,7 @@ export default function Ranking() {
           rankingList.map((item: any, index: any) => (
             <div
               className={`flex justify-between items-center mx-5 p-3 ${
-                item.username === currentUser.username &&
+                item.username === user.username &&
                 "rounded-2xl bg-[#232124] bg-opacity-30 border-[#ffffff33] border-2"
               }`}
             >
@@ -106,7 +97,7 @@ export default function Ranking() {
           rankingList.map((item: any, index: any) => (
             <div
               className={`flex justify-between items-center mx-5 p-3 ${
-                item.username === currentUser.username &&
+                item.username === user.username &&
                 "rounded-2xl bg-[#232124] bg-opacity-30 border-[#ffffff33] border-2"
               }`}
             >
@@ -121,7 +112,7 @@ export default function Ranking() {
           rankingList.map((item: any, index: any) => (
             <div
               className={`flex justify-between items-center mx-5 p-3 ${
-                item.username === currentUser.username &&
+                item.username === user.username &&
                 "rounded-2xl bg-[#232124] bg-opacity-30 border-[#ffffff33] border-2"
               }`}
             >
@@ -136,7 +127,7 @@ export default function Ranking() {
           rankingList.map((item: any, index: any) => (
             <div
               className={`flex justify-between items-center mx-5 p-3 ${
-                item.username === currentUser.username &&
+                item.username === user.username &&
                 "rounded-2xl bg-[#232124] bg-opacity-30 border-[#ffffff33] border-2"
               }`}
             >
