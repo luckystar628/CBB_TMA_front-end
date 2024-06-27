@@ -5,7 +5,6 @@ import axios from "axios";
 
 export default function Ranking() {
   const { user } = useGlobalContext();
-  console.log(user);
   const backend = import.meta.env.VITE_BACKEND_URL;
   const [tab, setTab] = useState(0);
   const [rankingList, setRankingList] = useState<any>([]);
@@ -121,7 +120,7 @@ export default function Ranking() {
                 <span className="mr-3">{index + 1}.</span>
                 <span>{item.username}</span>
               </div>
-              <span>{item.score ? `${item.score} coins` : ""}</span>
+              <span>{(item.score && item.score > 1) ?`${item.score} coins` : (item.score && item.score < 1) ?`${item.score} coin` : ""}</span>
             </div>
           ))
         ) : tab == 3 && rankingList.length > 0 ? (
