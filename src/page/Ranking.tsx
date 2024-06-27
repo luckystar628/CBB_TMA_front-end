@@ -5,6 +5,7 @@ import axios from "axios";
 
 export default function Ranking() {
   const { user } = useGlobalContext();
+  console.log(user);
   const backend = import.meta.env.VITE_BACKEND_URL;
   const [tab, setTab] = useState(0);
   const [rankingList, setRankingList] = useState<any>([]);
