@@ -60,13 +60,13 @@ export default function Airdrop() {
           onClick={() => !isCompleted[3] && handleLink(3)}
         >
           follow us on tiktok
-          <div className="flex justify-center items-center gap-2"><img src="/image/Coin_small.png" /> +1</div>
+          <div className="flex justify-center items-center gap-2"><img src="/image/Coin_small.png" className="w-4 h-4" /> +1</div>
         </Link>
         <Link to="https://www.instagram.com/nomadworld.ai" className={`text-lg text-[16px] flex justify-center items-center gap-3 text-white font-light py-3 rounded-xl shadow-lg border-[#ffffff33] border-2 ${isCompleted[4] ? "bg-[#2F9A21] cursor-not-allowed" : "bg-[#ffffff] bg-opacity-10 cursor-pointer hover:bg-opacity-20 active:bg-opacity-10"}`}
           onClick={() => !isCompleted[4] && handleLink(4)}
         >
           follow us on instagram
-          <div className="flex justify-center items-center gap-2"><img src="/image/Coin_small.png" /> +1</div>
+          <div className="flex justify-center items-center gap-2"><img src="/image/Coin_small.png" className="w-4 h-4" /> +1</div>
         </Link>
       </div>
     </div>
