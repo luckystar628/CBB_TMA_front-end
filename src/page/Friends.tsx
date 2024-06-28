@@ -90,7 +90,7 @@ export default function Friends() {
                 <span>{item.username}</span>
               </div>
               <span>
-                {item.score ? `${item.score} coins` : "share to earn"}
+                {item.isInvited ? "share to earn" : item.score > 1 ? `${item.score} coins` : `${item.score} coin` }
               </span>
             </div>
             <img
