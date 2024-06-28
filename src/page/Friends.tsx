@@ -1,12 +1,12 @@
 import { rankingList } from "../assets/const";
 import ShareReferral from "../component/ShareReferral";
-// import { initUtils } from "@tma.js/sdk";
+import { initUtils } from "@tma.js/sdk";
 
 import { useGlobalContext } from "../context/GlobalContext";
 
 export default function Friends() {
   const { user } = useGlobalContext();
-  // const utils = initUtils();
+  const utils = initUtils();
   // const openTelegram = () => {
   //   utils.openTelegramLink(
   //     `https://t.me/share/url?url=https://t.me/catizenbot/gameapp?startapp=rp_1365932&text=%F0%9F%92%B0Catizen%3A%20Unleash%2C%20Play%2C%20Earn%20-%20Where%20Every%20Game%20Leads%20to%20an%20Airdrop%20Adventure!%0A%F0%9F%8E%81Let%27s%20play-to-earn%20airdrop%20right%20now!`
@@ -16,7 +16,7 @@ export default function Friends() {
   const shareTelegram = () => {
     const url = "https://t.me/hiccup2735";
     const text = "Look! Some cool app here!"
-    window.open(`tg://msg_url?url=${url}&text=${text}`);
+    utils.shareURL(url, text);
     // utils.shareURL("https://t.me/mybot/myapp", "Look! Some cool app here!");
   };
 
