@@ -16,8 +16,8 @@ export default function Friends() {
   const shareTelegram = () => {
     // const url = "https://t.me/hiccup2735";
     // const text = "Look! Some cool app here!"
-    utils.openTelegramLink(
-      `https://t.me/${user.username}`
+    utils.openLink(
+      `https://t.me/hiccup2735`
     );
     // utils.shareURL("https://t.me/mybot/myapp", "Look! Some cool app here!");
   };
