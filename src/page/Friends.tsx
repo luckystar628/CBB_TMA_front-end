@@ -17,7 +17,7 @@ export default function Friends() {
     // const url = "https://t.me/hiccup2735";
     // const text = "Look! Some cool app here!"
     utils.openTelegramLink(
-      `https://t.me/chat/url?url=https://t.me/catizenbot/gameapp?startapp=rp_1365932&text=%F0%9F%92%B0Catizen%3A%20Unleash%2C%20Play%2C%20Earn%20-%20Where%20Every%20Game%20Leads%20to%20an%20Airdrop%20Adventure!%0A%F0%9F%8E%81Let%27s%20play-to-earn%20airdrop%20right%20now!`
+      `https://t.me/${user.username}`
     );
     // utils.shareURL("https://t.me/mybot/myapp", "Look! Some cool app here!");
   };
