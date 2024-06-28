@@ -1,17 +1,25 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
+import { useGlobalContext } from "../context/GlobalContext";
+
 export default function Airdrop() {
+  const { user } = useGlobalContext();
   const [isCompleted, setIsCompleted] = useState<any>([false, false, false, false, false]);
   const backend = import.meta.env.VITE_BACKEND_URL;
   useEffect(() => {
     console.log("isCompleted: ", isCompleted);
   }, [isCompleted])
   const handleLink = (index: number) => {
-    axios.post(`${backend}/task/add/${index}`).then(res => {
+    let newState = [...isCompleted];
+    newState[index] = true;
+    axios.post(`${backend}/task/set`, {
+      telID: user.id,
+      task: newState
+    }).then(res => {
       console.log(res);
-      setIsCompleted((pre: any) => { const newState = [...pre]; newState[index] = true; return newState; })
-    })
+      setIsCompleted(newState);
+    }).catch(error => console.error(error));
   }
   return (
     <div className="mx-10 max-sm:mx-0">
