@@ -29,7 +29,7 @@ export default function Airdrop() {
       telID: user.id
     }).then(res => {
       console.log(res);
-      setIsCompleted(res.data.task);
+      setIsCompleted(res.data.task.task);
     }).catch(err => console.error(err))
   }
   
