@@ -7,7 +7,7 @@ export default function ShareReferral() {
   const textEncoded = encodeURIComponent(text);
   const openTelegram = () => {
     utils.openTelegramLink(
-      `https://t.me/share/url?url=https://t.me/NomadTestAppBot?startapp=rp_${user.id}&text=${textEncoded}`
+      `https://t.me/share/url?url=https://t.me/Go_game_dev_bot?start=${user.id}&text=${textEncoded}`
     );
   };
   return (
