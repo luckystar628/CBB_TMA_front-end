@@ -8,9 +8,10 @@ export default function Airdrop() {
   const [isCompleted, setIsCompleted] = useState<any>([false, false, false, false, false]);
   const backend = import.meta.env.VITE_BACKEND_URL;
   useEffect(() => {
-    console.log("isCompleted: ", isCompleted);
-  }, [isCompleted])
-  const handleLink = (index: number) => {
+    getState()
+  }, [])
+  
+  const handleLink = async (index: number) => {
     let newState = [...isCompleted];
     newState[index] = true;
     console.log(newState);
@@ -22,6 +23,16 @@ export default function Airdrop() {
       setIsCompleted(newState);
     }).catch(error => console.error(error));
   }
+
+  const getState = async () => {
+    axios.post(`${backend}/task/get`, {
+      telID: user.id
+    }).then(res => {
+      console.log(res);
+      setIsCompleted(res.data.task);
+    }).catch(err => console.error(err))
+  }
+  
   return (
     <div className="mx-10 max-sm:mx-0">
       <div className="text-2xl font-[600] max-sm:text-lg">complete daily actions<br /> for your chance to win blob</div>
