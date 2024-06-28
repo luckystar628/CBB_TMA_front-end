@@ -1,17 +1,28 @@
-import { rankingList } from "../assets/const";
 import ShareReferral from "../component/ShareReferral";
 import { initUtils } from "@tma.js/sdk";
 
 import { useGlobalContext } from "../context/GlobalContext";
+import { useEffect, useState } from "react";
+
+import axios from "axios"
 
 export default function Friends() {
   const { user } = useGlobalContext();
   const utils = initUtils();
+  const backend = import.meta.env.VITE_BACKEND_URL;
   // const openTelegram = () => {
   //   utils.openTelegramLink(
   //     `https://t.me/share/url?url=https://t.me/catizenbot/gameapp?startapp=rp_1365932&text=%F0%9F%92%B0Catizen%3A%20Unleash%2C%20Play%2C%20Earn%20-%20Where%20Every%20Game%20Leads%20to%20an%20Airdrop%20Adventure!%0A%F0%9F%8E%81Let%27s%20play-to-earn%20airdrop%20right%20now!`
   //   );
   // }
+  const [rankingList, setRankingList] = useState<any>([]);
+
+  useEffect(() => {
+    axios.post(`${backend}/friend/get`, {telID: user.id}).then(res => {
+      console.log(res.data.friends);
+      setRankingList(res.data.friends);
+    }).catch((error) => console.error(error))
+  }, [])
 
   const shareTelegram = (username: string) => {
     // const url = "https://t.me/hiccup2735";
@@ -66,7 +77,7 @@ export default function Friends() {
         </li>
       </ul> */}
       <div className="mx-10 max-sm:mx-0 overflow-auto scrollbar-hidden my-2">
-        {rankingList.map((item, index) => (
+        {rankingList.map((item: any, index: number) => (
           <div className="flex items-center">
             <div
               className={`flex w-full justify-between items-center mx-5 p-3 ${
