@@ -32,7 +32,7 @@ export default function Friends() {
     // );
     // utils.shareURL("https://t.me/mybot/myapp", "Look! Some cool app here!");
 
-    const text = encodeURIComponent("Look! Some cool app here!");
+    const text = encodeURIComponent("You did not answer the Nomad daily question today! Answer to climb the ranks and be rewarded by our airdrop.");
     const url = `https://t.me/${username}?text=${text}`;
     window.open(url, '_blank');
   };
@@ -94,7 +94,7 @@ export default function Friends() {
                 <span>{item.username}</span>
               </div>
               <span>
-                {item.isInvited ? "share to earn" : item.score > 1 ? `${item.score} coins` : `${item.score} coin` }
+                {item.score > 1 ? `${item.score} coins` : `${item.score} coin` }
               </span>
             </div>
             <img
