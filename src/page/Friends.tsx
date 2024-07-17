@@ -1,5 +1,5 @@
 import ShareReferral from "../component/ShareReferral";
-import { initUtils } from "@tma.js/sdk";
+// import { initUtils } from "@tma.js/sdk";
 
 import { useGlobalContext } from "../context/GlobalContext";
 import { useEffect, useState } from "react";
@@ -8,7 +8,7 @@ import axios from "axios"
 
 export default function Friends() {
   const { user } = useGlobalContext();
-  const utils = initUtils();
+  // const utils = initUtils();
   const backend = import.meta.env.VITE_BACKEND_URL;
   // const openTelegram = () => {
   //   utils.openTelegramLink(
@@ -27,10 +27,14 @@ export default function Friends() {
   const shareTelegram = (username: string) => {
     // const url = "https://t.me/hiccup2735";
     // const text = "Look! Some cool app here!"
-    utils.openTelegramLink(
-      `https://t.me/${username}?text=Look%21%20Some%20cool%20app%20here!`
-    );
+    // utils.openTelegramLink(
+    //   `https://t.me/${username}?text=Look%21%20Some%20cool%20app%20here!`
+    // );
     // utils.shareURL("https://t.me/mybot/myapp", "Look! Some cool app here!");
+
+    const text = encodeURIComponent("Look! Some cool app here!");
+    const url = `https://t.me/${username}?text=${text}`;
+    window.open(url, '_blank');
   };
 
   // const [tab, setTab] = useState(0);
