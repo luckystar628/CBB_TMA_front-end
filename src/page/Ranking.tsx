@@ -12,6 +12,8 @@ export default function Ranking() {
     setTab(index);
   };
 
+  const [currentUser, setCurrentUser] = useState<any>({});
+
   useEffect(() => {
     fetchRankingData(tab);
   }, [tab]);
@@ -32,6 +34,11 @@ export default function Ranking() {
       .then((res: any) => {
         console.log(res);
         setRankingList(res.data.result);
+        res.data.result.map((item: any, index: number) => {
+          if (item.username === user.username) {
+            setCurrentUser({...item, rank: index + 1});
+          }
+        });
       })
       .catch((error: any) => {
         console.error(error);
@@ -120,7 +127,13 @@ export default function Ranking() {
                 <span className="mr-3">{index + 1}.</span>
                 <span>{item.username}</span>
               </div>
-              <span>{(item.score && item.score > 1) ?`${item.score} coins` : (item.score && item.score < 1) ?`${item.score} coin` : ""}</span>
+              <span>
+                {item.score && item.score > 1
+                  ? `${item.score} coins`
+                  : item.score && item.score < 1
+                  ? `${item.score} coin`
+                  : ""}
+              </span>
             </div>
           ))
         ) : tab == 3 && rankingList.length > 0 ? (
@@ -141,6 +154,25 @@ export default function Ranking() {
         ) : (
           <div>Loading...</div>
         )}
+        <div>
+          {currentUser && (
+            <div
+              className={`flex justify-between items-center mx-5 p-3 rounded-2xl bg-[#232124] bg-opacity-30 border-[#ffffff33] border-2`}
+            >
+              <div>
+                <span className="mr-3">{currentUser.rank}.</span>
+                <span>{currentUser.username}</span>
+              </div>
+              <span>
+                {currentUser.score && currentUser.score > 1
+                  ? `${currentUser.score} coins`
+                  : currentUser.score && currentUser.score < 1
+                  ? `${currentUser.score} coin`
+                  : ""}
+              </span>
+            </div>
+          )}
+        </div>
       </div>
       <div className="mb-10 max-sm:mx-0 mx-10">
         <ShareReferral />
