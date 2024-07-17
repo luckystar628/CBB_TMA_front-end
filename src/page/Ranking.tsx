@@ -155,25 +155,24 @@ export default function Ranking() {
           <div>Loading...</div>
         )}
       </div>
-      <div>
-        {currentUser && (
-          <div
-            className={`flex justify-between items-center mx-5 p-3 rounded-2xl bg-[#232124] bg-opacity-30 border-[#ffffff33] border-2 mb-1`}
-          >
-            <div>
-              <span className="mr-3">{currentUser.rank}.</span>
-              <span>{currentUser.username}</span>
-            </div>
-            <span>
-              {currentUser.score && currentUser.score > 1
-                ? `${currentUser.score} coins`
-                : currentUser.score && currentUser.score < 1
-                ? `${currentUser.score} coin`
-                : ""}
-            </span>
+
+      {currentUser && (
+        <div
+          className={`flex justify-between items-center mx-5 p-3 rounded-2xl bg-[#232124] bg-opacity-30 border-[#ffffff33] border-2 mb-1`}
+        >
+          <div>
+            <span className="mr-3">{currentUser.rank}.</span>
+            <span>{currentUser.username}</span>
           </div>
-        )}
-      </div>
+          <span>
+            {currentUser.score && currentUser.score > 1
+              ? `${currentUser.score} coins`
+              : currentUser.score && currentUser.score < 1
+              ? `${currentUser.score} coin`
+              : ""}
+          </span>
+        </div>
+      )}
       <div className="mb-10 max-sm:mx-0 mx-10">
         <ShareReferral />
       </div>
