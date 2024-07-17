@@ -28,7 +28,7 @@ export default function Friends() {
     // const url = "https://t.me/hiccup2735";
     // const text = "Look! Some cool app here!"
     utils.openTelegramLink(
-      `https://t.me/${username}`
+      `https://t.me/${username}?text=Look%21%20Some%20cool%20app%20here!`
     );
     // utils.shareURL("https://t.me/mybot/myapp", "Look! Some cool app here!");
   };
