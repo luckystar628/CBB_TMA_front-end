@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import ShareReferral from "../component/ShareReferral";
 import { useGlobalContext } from "../context/GlobalContext";
 import axios from "axios";
+import LoadingPage from "./Loading";
 
 export default function DailyReport() {
   const { user } = useGlobalContext();
@@ -34,7 +35,6 @@ export default function DailyReport() {
         console.log("err", err);
       });
   };
-
   return (
     <div className="px-8 py-2 max-sm:px-0 grow">
       {isCompleted ? (
@@ -55,8 +55,10 @@ export default function DailyReport() {
         </div>
       ) : (
         <>
-          {" "}
-          <div className="text-2xl max-sm:text-[16px]">
+        <div className="flex justify-center items-center h-full">
+          <LoadingPage/>
+        </div>
+          {/* <div className="text-2xl max-sm:text-[16px]">
             {todaysData ? todaysData.question : "Loading..."}
           </div>
           <div className="gap-5 mt-5 flex flex-col overflow scrollbar-hidden">
@@ -67,11 +69,10 @@ export default function DailyReport() {
                   return (
                     <div
                       key={index}
-                      className={`max-sm:text-[14px] transition shadow-lg ease-in-out cursor-pointer py-5 max-sm:py-3 rounded-xl border-2 hover:bg-opacity-60 active:bg-opacity-50 ${
-                        selectedOption === index
+                      className={`max-sm:text-[14px] transition shadow-lg ease-in-out cursor-pointer py-5 max-sm:py-3 rounded-xl border-2 hover:bg-opacity-60 active:bg-opacity-50 ${selectedOption === index
                           ? "bg-[#1A1A1A] bg-opacity-100 border-[#1A1A1A]"
                           : "bg-[#625f63] bg-opacity-30 border-[#ffffff33]"
-                      }`}
+                        }`}
                       onClick={() => setSelectedOption(index)}
                     >
                       {option}
@@ -85,7 +86,7 @@ export default function DailyReport() {
             onClick={() => handleSubmit()}
           >
             submit
-          </div>
+          </div> */}
         </>
       )}
     </div>
