@@ -1,7 +1,7 @@
 export const AnnounceList = [
     {
         icon: '/image/vector-1.svg',
-        title: 'earn 3 coins daily',
+        title: 'earn 5000 coins daily',
         content: 'by answering questions about your preferences related to social media, travel, and tech.'
     },
     {

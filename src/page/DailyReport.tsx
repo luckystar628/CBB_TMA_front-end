@@ -41,7 +41,7 @@ export default function DailyReport() {
         <div className="flex flex-col gap-10 max-sm:gap-6">
           <div className="text-xl font-[600]">
             congratulations! you earned <br />
-            <span className="text-2xl font-bold">3 coins</span>
+            <span className="text-2xl font-bold">5000 coins</span>
           </div>
           <div className="text-xl font-[600]">thank you for your response!</div>
           <div className="font-light text-xl">
