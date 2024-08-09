@@ -22,7 +22,7 @@ ${suitcaseEmoji} Climb the leaderboard to participate in one of the biggest aird
 
   return (
     <div
-      className="py-8 max-sm:py-5 bg-white rounded-lg text-black cursor-pointer hover:bg-opacity-60 active:bg-opacity-50"
+      className="py-8 max-sm:py-5 bg-white rounded-lg text-black cursor-pointer hover:bg-opacity-60 active:bg-opacity-50 "
       onClick={() => openTelegram()} // Add onClick event to call openTelegram
     >
       share to earn 2000 coins per referral

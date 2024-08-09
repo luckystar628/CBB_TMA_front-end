@@ -5,6 +5,7 @@ import Footer from "./component/Footer";
 import { useEffect } from "react";
 import { useGlobalContext } from "./context/GlobalContext";
 import WebApp from '@twa-dev/sdk';
+import ShareReferral from "./component/ShareReferral";
 
 export default function Layout() {
   const { setUser } = useGlobalContext();
@@ -19,7 +20,7 @@ export default function Layout() {
   }, [userData]);
 
   const loginUser = async () => {
-    if(!userData) return
+    if (!userData) return
     setUser({
       username: JSON.parse(userData).username,
       score: 0,
@@ -48,11 +49,10 @@ export default function Layout() {
         <img
           src="/nomad-logo.png"
           alt="logo"
-          className={`mx-auto ${
-            location.pathname === "/"
-              ? "mt-2 max-sm:mt-1"
-              : "mt-[10vh] max-sm:mt-[3vh]"
-          }`}
+          className={`mx-auto ${location.pathname === "/"
+            ? "mt-2 max-sm:mt-1"
+            : "mt-[10vh] max-sm:mt-[3vh]"
+            }`}
         />
         {
           <div className="text-xl font-light mt-1">
@@ -61,7 +61,10 @@ export default function Layout() {
         }
       </div>
       <Outlet />
-      {location.pathname !== "/" && <Footer />}
+      <div className="flex flex-col w-full space-y-20">
+        {location.pathname !== "/" && location.pathname !== "/airdrop" && <ShareReferral />}
+        {location.pathname !== "/" && <Footer />}
+      </div>
     </div>
   );
 }
