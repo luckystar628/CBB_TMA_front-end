@@ -1,6 +1,3 @@
-import ShareReferral from "../component/ShareReferral";
-// import { initUtils } from "@tma.js/sdk";
-
 import { useGlobalContext } from "../context/GlobalContext";
 import { useEffect, useState } from "react";
 
@@ -49,7 +46,7 @@ export default function Friends() {
       <div className="mx-10 max-sm:mx-0 mt-10 max-sm:mt-2 py-3 max-sm:py-2 rounded-md bg-[#232124] bg-opacity-30 border-[#ffffff33] border-2">
         friends
       </div>
-      <div className="mx-10 max-sm:mx-0 overflow-auto scrollbar-hidden my-2 h-[150px]">
+      <div className="mx-10 max-sm:mx-0 overflow-auto scrollbar-hidden my-2 h-[350px]">
         {loading && <LoadingPage />}
         {rankingList.map((item: any, index: number) => (
           <div className="flex items-center">
@@ -83,9 +80,6 @@ export default function Friends() {
             />
           </div>
         ))}
-      </div>
-      <div className="mb-10 mx-10 max-sm:mx-0">
-        <ShareReferral />
       </div>
     </>
   );

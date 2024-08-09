@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import ShareReferral from "../component/ShareReferral";
 import { useGlobalContext } from "../context/GlobalContext";
 import axios from "axios";
 import LoadingPage from "./Loading";
@@ -38,25 +37,26 @@ export default function DailyReport() {
         console.log("err", err);
       });
   };
-  if(loading) return <LoadingPage />;
+  if (loading) return <LoadingPage />;
   return (
-    <div className="px-8 py-2 max-sm:px-0 grow">
+    <div className="px-8 py-2 max-sm:px-0">
       {isCompleted ? (
-        <div className="flex flex-col gap-10 max-sm:gap-6">
-          <div className="text-xl font-[600]">
-            congratulations! you earned <br />
-            <span className="text-2xl font-bold">5000 coins</span>
+        <>
+          <div className="flex flex-col gap-10 max-sm:gap-6 justify-center h-[400px] ">
+            <div className="text-xl font-[600]">
+              congratulations! you earned <br />
+              <span className="text-2xl font-bold">5000 coins</span>
+            </div>
+            <div className="text-xl font-[600]">thank you for your response!</div>
+            <div className="font-light text-xl">
+              your insights are shaping a bordreless world with equal
+              opportunities for all
+            </div>
+            <div className="text-2xl">
+              come back tomorrow for another question!
+            </div>
           </div>
-          <div className="text-xl font-[600]">thank you for your response!</div>
-          <div className="font-light text-xl">
-            your insights are shaping a bordreless world with equal
-            opportunities for all
-          </div>
-          <div className="text-2xl">
-            come back tomorrow for another question!
-          </div>
-          <ShareReferral />
-        </div>
+        </>
       ) : (
         <>
           <div className="text-2xl max-sm:text-[16px]">
