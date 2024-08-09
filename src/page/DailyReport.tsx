@@ -62,7 +62,7 @@ export default function DailyReport() {
           <div className="text-2xl max-sm:text-[16px]">
             {todaysData ? todaysData.question : "Loading..."}
           </div>
-          <div className="gap-5 mt-5 flex flex-col overflow scrollbar-hidden">
+          <div className="gap-5 mt-5 flex flex-col overflow-auto h-[300px] scrollbar-hidden">
             {todaysData &&
               todaysData.options &&
               todaysData.options.map(

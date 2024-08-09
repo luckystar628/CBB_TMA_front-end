@@ -5,8 +5,6 @@ export default function ShareReferral() {
   const { user } = useGlobalContext(); // Get the user object from the global context
   const utils = initUtils(); // Initialize utils from the SDK
 
-  const BOT_URL = import.meta.env.VITE_BOT_URL;
-
   const airplaneEmoji = '\u2708\uFE0F'; // ✈️
   const suitcaseEmoji = '\uD83D\uDCF2'; // 🛄
   const trophyEmoji = '\uD83C\uDFC6'; // 🏆
@@ -18,7 +16,7 @@ ${suitcaseEmoji} Climb the leaderboard to participate in one of the biggest aird
   // Function to open the Telegram link
   const openTelegram = () => {
     utils.openTelegramLink(
-      `https://t.me/share/url?url=${BOT_URL}?start=${user.id}&text=${textEncoded}` // Use the custom encoded text
+      `https://t.me/share/url?url=https://t.me/nomaddailybot?start=${user.id}&text=${textEncoded}` // Use the custom encoded text
     );
   };
 
