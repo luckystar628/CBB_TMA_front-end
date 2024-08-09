@@ -80,8 +80,7 @@ export default function Ranking() {
           all-time
         </li>
       </ul>
-      <div className="h-[150px]">
-        <div className="mx-10 max-sm:mx-0 overflow-auto scrollbar-hidden my-2">
+        <div className="mx-10 max-sm:mx-0 overflow-auto scrollbar-hidden my-2 h-[150px]">
           {tab == 0 && rankingList.length > 0 ? (
             rankingList.map((item: any, index: any) => (
               <div
@@ -166,7 +165,6 @@ export default function Ranking() {
             </span>
           </div>
         )}
-      </div>
       <div className="mb-10 max-sm:mx-0 mx-10">
         <ShareReferral />
       </div>
