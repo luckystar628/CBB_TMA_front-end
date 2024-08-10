@@ -47,7 +47,7 @@ export default function Friends() {
         friends
       </div>
       <div className="mx-10 max-sm:mx-0 overflow-auto scrollbar-hidden my-2 h-[350px]">
-        {loading && <LoadingPage />}
+        {loading ? <div className="flex justify-center items-center h-full"><LoadingPage /></div>:""}
         {rankingList.map((item: any, index: number) => (
           <div className="flex items-center">
             <div

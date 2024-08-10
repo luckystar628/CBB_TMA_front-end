@@ -17,22 +17,20 @@ export default function Airdrop() {
   const handleLink = async (index: number) => {
     let newState = [...isCompleted];
     newState[index] = true;
-    console.log(newState);
+    // console.log(newState);
     axios.post(`${backend}/task/set`, {
       telID: user.id,
       task: newState
     }).then(res => {
-      console.log(res);
-      setIsCompleted(newState);
+      console.log(res.data.task.task);
+      setIsCompleted(res.data.task.task);
     }).catch(error => console.error(error));
   }
-
   const getState = async () => {
     axios.post(`${backend}/task/get`, {
       telID: user.id
     }).then(res => {
       setLoading(false);
-      console.log(res);
       setIsCompleted(res.data.task.task);
     }).catch(err => console.error(err))
   }
@@ -44,37 +42,37 @@ export default function Airdrop() {
           <div className="text-2xl font-[600] max-sm:text-lg">complete daily actions<br /> for your chance to win blob!</div>
           <div className="flex flex-col gap-6 max-sm:gap-4 my-10 max-sm:my-5 overflow-auto h-[400px]">
             <Link to="https://twitter.com/nomadworld_ai" className={`text-lg text-[16px] flex justify-center px-3 items-center gap-3 text-white font-light py-3 rounded-xl shadow-lg border-[#ffffff33] border-2 ${isCompleted[0] ? "bg-[#2F9A21] cursor-not-allowed" : "bg-[#ffffff] bg-opacity-10 cursor-pointer hover:bg-opacity-20 active:bg-opacity-10"}`}
-              onClick={() => !isCompleted[0] && handleLink(0)}
+              onClick={() => !isCompleted[0] ? handleLink(0) :""}
             >
               follow us on X
               <div className="flex justify-center items-center gap-2"><img src="/image/Coin_small.png" className="w-4 h-4" /> +50.000</div>
             </Link>
-            <Link to="https://twitter.com/TommydiLEE" className={`text-lg text-[16px] flex justify-center px-3 items-center gap-3 text-white font-light py-3 rounded-xl shadow-lg border-[#ffffff33] border-2 ${isCompleted[0] ? "bg-[#2F9A21] cursor-not-allowed" : "bg-[#ffffff] bg-opacity-10 cursor-pointer hover:bg-opacity-20 active:bg-opacity-10"}`}
-              onClick={() => !isCompleted[1] && handleLink(1)}
+            <Link to="https://twitter.com/TommydiLEE" className={`text-lg text-[16px] flex justify-center px-3 items-center gap-3 text-white font-light py-3 rounded-xl shadow-lg border-[#ffffff33] border-2 ${isCompleted[1] ? "bg-[#2F9A21] cursor-not-allowed" : "bg-[#ffffff] bg-opacity-10 cursor-pointer hover:bg-opacity-20 active:bg-opacity-10"}`}
+              onClick={() => !isCompleted[1] ? handleLink(1) :""}
             >
               follow our cto on X
               <div className="flex justify-center items-center gap-2"><img src="/image/Coin_small.png" className="w-4 h-4" /> +50.000</div>
             </Link>
-            <Link to="https://x.com/nomadworld_ai/status/1814310835507937421" className={`text-lg text-[16px] flex justify-center px-3 items-center gap-3 text-white font-light py-3 rounded-xl shadow-lg border-[#ffffff33] border-2 ${isCompleted[1] ? "bg-[#2F9A21] cursor-not-allowed" : "bg-[#ffffff] bg-opacity-10 cursor-pointer hover:bg-opacity-20 active:bg-opacity-10"}`}
-              onClick={() => !isCompleted[2] && handleLink(2)}
+            <Link to="https://x.com/nomadworld_ai/status/1814310835507937421" className={`text-lg text-[16px] flex justify-center px-3 items-center gap-3 text-white font-light py-3 rounded-xl shadow-lg border-[#ffffff33] border-2 ${isCompleted[2] ? "bg-[#2F9A21] cursor-not-allowed" : "bg-[#ffffff] bg-opacity-10 cursor-pointer hover:bg-opacity-20 active:bg-opacity-10"}`}
+              onClick={() => !isCompleted[2] ? handleLink(2) :""}
             >
               retweet, like, and reply to this tweet!
               <div className="flex justify-center items-center gap-2"><img src="/image/Coin_small.png" className="w-4 h-4" /> +50.000</div>
             </Link>
-            <Link to="https://nomadworld.ai" className={`text-lg text-[16px] flex justify-center px-3 items-center gap-3 text-white font-light py-3 rounded-xl shadow-lg border-[#ffffff33] border-2 ${isCompleted[2] ? "bg-[#2F9A21] cursor-not-allowed" : "bg-[#ffffff] bg-opacity-10 cursor-pointer hover:bg-opacity-20 active:bg-opacity-10"}`}
-              onClick={() => !isCompleted[3] && handleLink(3)}
+            <Link to="https://nomadworld.ai" className={`text-lg text-[16px] flex justify-center px-3 items-center gap-3 text-white font-light py-3 rounded-xl shadow-lg border-[#ffffff33] border-2 ${isCompleted[3] ? "bg-[#2F9A21] cursor-not-allowed" : "bg-[#ffffff] bg-opacity-10 cursor-pointer hover:bg-opacity-20 active:bg-opacity-10"}`}
+              onClick={() => !isCompleted[3] ? handleLink(3) :""}
             >
               visit our website
               <div className="flex justify-center items-center gap-2"><img src="/image/Coin_small.png" className="w-4 h-4" /> +50.000</div>
             </Link>
-            <Link to="https://www.tiktok.com/@nomadworld.ai" className={`text-lg text-[16px] flex justify-center px-3 items-center gap-3 text-white font-light py-3 rounded-xl shadow-lg border-[#ffffff33] border-2 ${isCompleted[3] ? "bg-[#2F9A21] cursor-not-allowed" : "bg-[#ffffff] bg-opacity-10 cursor-pointer hover:bg-opacity-20 active:bg-opacity-10"}`}
-              onClick={() => !isCompleted[4] && handleLink(4)}
+            <Link to="https://www.tiktok.com/@nomadworld.ai" className={`text-lg text-[16px] flex justify-center px-3 items-center gap-3 text-white font-light py-3 rounded-xl shadow-lg border-[#ffffff33] border-2 ${isCompleted[4] ? "bg-[#2F9A21] cursor-not-allowed" : "bg-[#ffffff] bg-opacity-10 cursor-pointer hover:bg-opacity-20 active:bg-opacity-10"}`}
+              onClick={() => !isCompleted[4] ? handleLink(4) :""}
             >
               follow us on tiktok
               <div className="flex justify-center items-center gap-2"><img src="/image/Coin_small.png" className="w-4 h-4" /> +50.000</div>
             </Link>
-            <Link to="https://www.instagram.com/nomadworld.ai" className={`text-lg text-[16px] flex justify-center px-3 items-center gap-3 text-white font-light py-3 rounded-xl shadow-lg border-[#ffffff33] border-2 ${isCompleted[4] ? "bg-[#2F9A21] cursor-not-allowed" : "bg-[#ffffff] bg-opacity-10 cursor-pointer hover:bg-opacity-20 active:bg-opacity-10"}`}
-              onClick={() => !isCompleted[5] && handleLink(5)}
+            <Link to="https://www.instagram.com/nomadworld.ai" className={`text-lg text-[16px] flex justify-center px-3 items-center gap-3 text-white font-light py-3 rounded-xl shadow-lg border-[#ffffff33] border-2 ${isCompleted[5] ? "bg-[#2F9A21] cursor-not-allowed" : "bg-[#ffffff] bg-opacity-10 cursor-pointer hover:bg-opacity-20 active:bg-opacity-10"}`}
+              onClick={() => !isCompleted[5] ? handleLink(5) :""}
             >
               follow us on instagram
               <div className="flex justify-center items-center gap-2"><img src="/image/Coin_small.png" className="w-4 h-4" /> +50.000</div>

@@ -14,7 +14,6 @@ ${suitcaseEmoji} Climb the leaderboard to participate in one of the biggest aird
   // Function to open the Telegram link
   const openTelegram = () => {
     window.open(`https://t.me/share/url?url=https://t.me/nomaddailybot?start=${user.id}&text=${textEncoded}`, '_blank', 'width=400,height=500');
-   
   };
 
   return (
