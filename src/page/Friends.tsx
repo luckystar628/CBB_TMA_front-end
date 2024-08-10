@@ -19,7 +19,6 @@ export default function Friends() {
   useEffect(() => {
     axios.post(`${backend}/friend/get`, {telID: user.id}).then(res => {
       setLoading(false);
-      console.log(res.data.friends);
       setRankingList(res.data.friends);
     }).catch((error) => console.error(error))
   }, [])
@@ -34,7 +33,8 @@ export default function Friends() {
 
     const text = encodeURIComponent("You did not answer the Nomad daily question today! Answer to climb the ranks and be rewarded by our airdrop.");
     const url = `https://t.me/${username}?text=${text}`;
-    window.open(url, '_blank');
+    window.open(url, '_blank', 'width=400,height=500');
+    // window.open(`https://t.me/share/url?url=https://t.me/nomaddailybot?start=${user.id}&text=${textEncoded}`, '_blank', 'width=400,height=500');
   };
 
   // const [tab, setTab] = useState(0);
