@@ -1,9 +1,7 @@
-import { initUtils } from "@tma.js/sdk"; // Import initUtils from the SDK
 import { useGlobalContext } from "../context/GlobalContext"; // Import the useGlobalContext hook
 
 export default function ShareReferral() {
   const { user } = useGlobalContext(); // Get the user object from the global context
-  const utils = initUtils(); // Initialize utils from the SDK
 
   const airplaneEmoji = '\u2708\uFE0F'; // ✈️
   const suitcaseEmoji = '\uD83D\uDCF2'; // 🛄
@@ -15,9 +13,7 @@ ${suitcaseEmoji} Climb the leaderboard to participate in one of the biggest aird
 
   // Function to open the Telegram link
   const openTelegram = () => {
-    utils.openTelegramLink(
-      `https://t.me/share/url?url=https://t.me/nomaddailybot?start=${user.id}&text=${textEncoded}` // Use the custom encoded text
-    );
+    window.open(`https://t.me/share/url?url=https://t.me/nomaddailybot?start=${user.id}&text=${textEncoded}`, '_blank', 'width=400,height=500');
   };
 
   return (

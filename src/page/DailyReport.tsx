@@ -42,7 +42,7 @@ export default function DailyReport() {
     <div className="px-8 py-2 max-sm:px-0">
       {isCompleted ? (
         <>
-          <div className="flex flex-col gap-10 max-sm:gap-6 justify-center h-[400px] ">
+          <div className="flex flex-col gap-10 max-sm:gap-6 justify-center h-[300px] ">
             <div className="text-xl font-[600]">
               congratulations! you earned <br />
               <span className="text-2xl font-bold">5000 coins</span>
