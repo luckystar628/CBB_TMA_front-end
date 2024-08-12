@@ -41,7 +41,7 @@ export default function Layout() {
   };
 
   return (
-    <div className="relative w-full min-h-screen flex flex-col justify-between bg-gradient-bottom-center p-5 poppins-thin">
+    <div className="relative w-full h-screen overflow-auto flex flex-col justify-between bg-gradient-bottom-center p-5 poppins-thin">
       <div>
         {location.pathname === "/" && (
           <div className="text-2xl mt-[10vh] max-sm:mt-[3vh]">Welcome to</div>
