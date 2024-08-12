@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useGlobalContext } from "../context/GlobalContext";
 import axios from "axios";
 import LoadingPage from "./Loading";
+import ShareReferral from "../component/ShareReferral";
 
 export default function DailyReport() {
   const { user } = useGlobalContext();
@@ -56,6 +57,7 @@ export default function DailyReport() {
               come back tomorrow for another question!
             </div>
           </div>
+          <ShareReferral />
         </>
       ) : (
         <>
