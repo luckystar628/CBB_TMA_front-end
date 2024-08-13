@@ -26,11 +26,12 @@ export default function DailyReport() {
   // }, []);
   const Getquation = () =>{
     setTime(0);
+    setIsTrigger(false);
     axios.get(`${backend}/question/get/${user.id}`).then(async (res: any) => {
       setLoading(false);
-      setIsTrigger(!istrigger);
       await res.data && setTodaysData(res.data.question);
       await res.data && setIsQuations(res.data.isQuation);
+      setIsTrigger(!istrigger);
     }).catch((err: any) => {
       setLoading(false);
       setIsCompleted(true);
@@ -38,7 +39,7 @@ export default function DailyReport() {
     });
   }
   useEffect(() => {
-    if (time <= 100 && isQuations === true)
+    if (time <= 100 && isQuations === true && istrigger === true) 
       setTimeout(() => {
         setTime(time + 1);
       }, 30);
@@ -46,7 +47,7 @@ export default function DailyReport() {
       Getquation();
     }
 
-  },[istrigger]);
+  });
   const handleSubmit = async () => {
     axios
       .post(`${backend}/question/setresult`, {
