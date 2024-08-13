@@ -14,6 +14,7 @@ export default function DailyReport() {
   const [isQuations, setIsQuations] = useState<boolean>(true);
   const [isGet, setIsGet] = useState<boolean>(false);
   useEffect(() => {
+    
     axios.get(`${backend}/question/get/${user.id}`).then((res: any) => {
       setTime(0);
       setLoading(false);
@@ -26,7 +27,7 @@ export default function DailyReport() {
     });
   }, [isGet]);
   setTimeout(() => {
-    if(isQuations === false) 
+    if(isCompleted === true) 
         setIsGet(!isGet);
   }, 3000);
   const [time, setTime] = useState<number>(0);
