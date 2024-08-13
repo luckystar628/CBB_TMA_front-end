@@ -21,7 +21,7 @@ export default function DailyReport() {
         res.data && setTodaysData(res.data.question);
         res.data && setIsQuations(res.data.isQuation);
         if(isQuations === true)
-          return () => clearInterval(intervalId);
+          clearInterval(intervalId);
       }).catch((err: any) => {
         setLoading(false);
         setIsCompleted(true);
@@ -30,7 +30,7 @@ export default function DailyReport() {
     };
     // Start polling every 3 seconds
     intervalId = setInterval(fetchData, 3000);
-    
+    return () => clearInterval(intervalId);
   }, []);
   
   const [time, setTime] = useState<number>(0);
