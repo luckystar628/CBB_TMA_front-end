@@ -14,7 +14,7 @@ export default function DailyReport() {
   const [isQuations, setIsQuations] = useState<boolean>(true);
   useEffect(() => {
     setTimeout(() => {
-      if (isQuations)
+      if (isQuations === true)
         axios.get(`${backend}/question/get/${user.id}`).then((res: any) => {
           setLoading(false);
           res.data && setTodaysData(res.data.question);
@@ -24,8 +24,8 @@ export default function DailyReport() {
           setIsCompleted(true);
           console.log(err);
         });
-    }, 3000);
-  },[todaysData]);
+    }, 1000);
+  });
 
   const handleSubmit = async () => {
     axios
@@ -37,7 +37,7 @@ export default function DailyReport() {
       })
       .then((res: any) => {
         console.log("res", res);
-        if (!isQuations)
+        if (isQuations === false)
           setIsCompleted(true);
       })
       .catch((err: any) => {
