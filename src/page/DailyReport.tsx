@@ -53,6 +53,7 @@ export default function DailyReport() {
       })
       .then((res: any) => {
         console.log("res", res);
+        setTime(100);
         if (isQuations === false)
           setIsCompleted(true);
       })
