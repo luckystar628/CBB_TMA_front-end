@@ -12,25 +12,27 @@ export default function DailyReport() {
   const [isCompleted, setIsCompleted] = useState<boolean>(false);
   const [loading, setLoading] = useState(true);
   const [isQuations, setIsQuations] = useState<boolean>(true);
-  const [isTrigger, setIsTrigger] = useState<boolean>(false);
   const [time, setTime] = useState<number>(0);
   useEffect(() => {
-    axios.get(`${backend}/question/get/${user.id}`).then((res: any) => {
-      setTime(0);
-      setLoading(false);
-      res.data && setTodaysData(res.data.question);
-      res.data && setIsQuations(res.data.isQuation);
-    }).catch((err: any) => {
-      setLoading(false);
-      setIsCompleted(true);
-      console.log(err);
-    });
-    if (isQuations === true) {
-      setTimeout(() => {
-        setIsTrigger(!isTrigger);
-      }, 3000);
-    }
-  }, [isTrigger]);
+    // Define the function you want to execute
+    const myFunction = () => {
+      axios.get(`${backend}/question/get/${user.id}`).then((res: any) => {
+        setTime(0);
+        setLoading(false);
+        res.data && setTodaysData(res.data.question);
+        res.data && setIsQuations(res.data.isQuation);
+        if(isQuations === false) clearInterval(intervalId); 
+      }).catch((err: any) => {
+        setLoading(false);
+        setIsCompleted(true);
+        console.log(err);
+      });
+    };
+    // Set up the interval to call myFunction every 3 seconds
+    const intervalId = setInterval(myFunction, 3000);
+    // Cleanup function to clear the interval when the component unmounts
+    if(isQuations === false) clearInterval(intervalId);
+  }, []);
   useEffect(() => {
     if (time <= 100)
       setTimeout(() => {
