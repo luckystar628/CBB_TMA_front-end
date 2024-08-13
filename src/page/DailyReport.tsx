@@ -14,7 +14,7 @@ export default function DailyReport() {
   const [isQuations, setIsQuations] = useState<boolean>(true);
   const [isTrigger, setIsTrigger] = useState<boolean>(false);
   useEffect(() => {
-    if (isQuations === true)
+    // if (isQuations === true)
       axios.get(`${backend}/question/get/${user.id}`).then((res: any) => {
         setTime(0);
         setLoading(false);
