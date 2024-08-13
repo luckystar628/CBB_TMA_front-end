@@ -26,7 +26,8 @@ export default function DailyReport() {
     });
   }, [isGet]);
   setTimeout(() => {
-    setIsGet(!isGet);
+    if(isQuations === false) 
+        setIsGet(!isGet);
   }, 3000);
   const [time, setTime] = useState<number>(0);
   useEffect(() => {
