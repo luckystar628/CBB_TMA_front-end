@@ -13,23 +13,24 @@ export default function DailyReport() {
   const [loading, setLoading] = useState(true);
   const [isQuations, setIsQuations] = useState<boolean>(true);
   const [isTrigger, setIsTrigger] = useState<boolean>(false);
-  useEffect(() => {
-    // if (isQuations === true)
-      axios.get(`${backend}/question/get/${user.id}`).then((res: any) => {
-        setTime(0);
-        setLoading(false);
-        res.data && setTodaysData(res.data.question);
-        res.data && setIsQuations(res.data.isQuation);
-      }).catch((err: any) => {
-        setLoading(false);
-        setIsCompleted(true);
-        console.log(err);
-      });
-  },[isTrigger]);
-  setTimeout(() => {
-    setIsTrigger(!isTrigger);
-  }, 3000)
   const [time, setTime] = useState<number>(0);
+  useEffect(() => {
+    axios.get(`${backend}/question/get/${user.id}`).then((res: any) => {
+      setTime(0);
+      setLoading(false);
+      res.data && setTodaysData(res.data.question);
+      res.data && setIsQuations(res.data.isQuation);
+    }).catch((err: any) => {
+      setLoading(false);
+      setIsCompleted(true);
+      console.log(err);
+    });
+    if (isQuations === true) {
+      setTimeout(() => {
+        setIsTrigger(!isTrigger);
+      }, 3000);
+    }
+  }, [isTrigger]);
   useEffect(() => {
     if (time <= 100)
       setTimeout(() => {
