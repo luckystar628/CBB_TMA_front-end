@@ -24,7 +24,7 @@ export default function DailyReport() {
           setIsCompleted(true);
           console.log(err);
         });
-      }, 3000);
+      }, 10000);
   });
 
   const handleSubmit = async () => {
