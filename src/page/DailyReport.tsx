@@ -24,8 +24,8 @@ export default function DailyReport() {
   //   if(isQuations === false) clearInterval(intervalId);
   // }, []);
   const Getquation = () =>{
+    setTime(0);
     axios.get(`${backend}/question/get/${user.id}`).then(async (res: any) => {
-      setTime(0);
       setLoading(false);
       await res.data && setTodaysData(res.data.question);
       await res.data && setIsQuations(res.data.isQuation);
