@@ -12,6 +12,7 @@ export default function DailyReport() {
   const [isCompleted, setIsCompleted] = useState<boolean>(false);
   const [loading, setLoading] = useState(true);
   const [isQuations, setIsQuations] = useState<boolean>(true);
+  const [isGet, setIsGet] = useState<boolean>(false);
   useEffect(() => {
     axios.get(`${backend}/question/get/${user.id}`).then((res: any) => {
       setTime(0);
@@ -23,19 +24,9 @@ export default function DailyReport() {
       setIsCompleted(true);
       console.log(err);
     });
-  }, []);
+  }, [isGet]);
   setTimeout(() => {
-    if (isQuations === true)
-      axios.get(`${backend}/question/get/${user.id}`).then((res: any) => {
-        setTime(0);
-        setLoading(false);
-        res.data && setTodaysData(res.data.question);
-        res.data && setIsQuations(res.data.isQuation);
-      }).catch((err: any) => {
-        setLoading(false);
-        setIsCompleted(true);
-        console.log(err);
-      });
+    setIsGet(!isGet);
   }, 3000);
   const [time, setTime] = useState<number>(0);
   useEffect(() => {
