@@ -26,7 +26,7 @@ export default function DailyReport() {
         });
         else return;
     }, 3000);
-  },[]);
+  });
 
   const handleSubmit = async () => {
     axios
