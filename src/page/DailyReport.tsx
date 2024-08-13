@@ -16,6 +16,7 @@ export default function DailyReport() {
     setTimeout(() => {
       if (isQuations === true)
         axios.get(`${backend}/question/get/${user.id}`).then((res: any) => {
+          setTime(0);
           setLoading(false);
           res.data && setTodaysData(res.data.question);
           res.data && setIsQuations(res.data.isQuation);
