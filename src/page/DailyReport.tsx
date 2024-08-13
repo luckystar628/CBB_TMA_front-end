@@ -14,16 +14,9 @@ export default function DailyReport() {
   const [isQuations, setIsQuations] = useState<boolean>(true);
   const [time, setTime] = useState<number>(0);
   const [istrigger, setIsTrigger] = useState<boolean>(false);
-  // useEffect(() => {
-  //   // Define the function you want to execute
-  //   const myFunction = () => {
-  //     if(isQuations === false)
-  //   };
-  //   // Set up the interval to call myFunction every 3 seconds
-  //   const intervalId = setInterval(myFunction, 3000);
-  //   // Cleanup function to clear the interval when the component unmounts
-  //   if(isQuations === false) clearInterval(intervalId);
-  // }, []);
+  useEffect(() =>{
+    Getquation();
+  },[])
   const Getquation = () =>{
     setTime(0);
     setIsTrigger(false);
