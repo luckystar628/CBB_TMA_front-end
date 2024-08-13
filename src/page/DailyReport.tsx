@@ -26,7 +26,13 @@ export default function DailyReport() {
         });
     }, 3000);
   });
-
+  const [time, setTime] = useState<number>(0);
+  useEffect(() => {
+    if (time <= 100)
+      setTimeout(() => {
+        setTime(time + 1);
+      }, 30);
+  })
   const handleSubmit = async () => {
     axios
       .post(`${backend}/question/setresult`, {
@@ -67,6 +73,11 @@ export default function DailyReport() {
         </>
       ) : (
         <>
+          <div className="flex justify-center">
+            <div className="w-[80%] h-4 bg-gray-600 rounded-lg">
+              <div className={`h-4 bg-[#D5A9EF] rounded-lg`} style={{ width: `${time}%` }} />
+            </div>
+          </div>
           <div className="text-2xl max-sm:text-[16px]">
             {todaysData ? todaysData.question : "Loading..."}
           </div>
