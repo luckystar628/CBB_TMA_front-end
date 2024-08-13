@@ -13,6 +13,7 @@ export default function DailyReport() {
   const [loading, setLoading] = useState(true);
   const [isQuations, setIsQuations] = useState<boolean>(true);
   const [time, setTime] = useState<number>(0);
+  const [istrigger, setIsTrigger] = useState<boolean>(false);
   // useEffect(() => {
   //   // Define the function you want to execute
   //   const myFunction = () => {
@@ -27,6 +28,7 @@ export default function DailyReport() {
     setTime(0);
     axios.get(`${backend}/question/get/${user.id}`).then(async (res: any) => {
       setLoading(false);
+      setIsTrigger(!istrigger);
       await res.data && setTodaysData(res.data.question);
       await res.data && setIsQuations(res.data.isQuation);
     }).catch((err: any) => {
@@ -44,7 +46,7 @@ export default function DailyReport() {
       Getquation();
     }
 
-  })
+  },[istrigger]);
   const handleSubmit = async () => {
     axios
       .post(`${backend}/question/setresult`, {
