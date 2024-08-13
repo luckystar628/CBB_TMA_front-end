@@ -25,7 +25,7 @@ export default function DailyReport() {
           console.log(err);
         });
     }, 3000);
-  });
+  },[todaysData]);
 
   const handleSubmit = async () => {
     axios
