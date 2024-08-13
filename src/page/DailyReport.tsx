@@ -20,7 +20,7 @@ export default function DailyReport() {
         setLoading(false);
         res.data && setTodaysData(res.data.question);
         res.data && setIsQuations(res.data.isQuation);
-        if(isQuations === true)
+        if(isQuations === false)
           clearInterval(intervalId);
       }).catch((err: any) => {
         setLoading(false);
