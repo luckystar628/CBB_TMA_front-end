@@ -23,23 +23,25 @@ export default function DailyReport() {
   //   // Cleanup function to clear the interval when the component unmounts
   //   if(isQuations === false) clearInterval(intervalId);
   // }, []);
- 
+  const Getquation = () =>{
+    axios.get(`${backend}/question/get/${user.id}`).then(async (res: any) => {
+      setTime(0);
+      setLoading(false);
+      await res.data && setTodaysData(res.data.question);
+      await res.data && setIsQuations(res.data.isQuation);
+    }).catch((err: any) => {
+      setLoading(false);
+      setIsCompleted(true);
+      console.log(err);
+    });
+  }
   useEffect(() => {
     if (time <= 100 && isQuations === true)
       setTimeout(() => {
         setTime(time + 1);
       }, 30);
     if(time === 100) {
-      axios.get(`${backend}/question/get/${user.id}`).then(async (res: any) => {
-        setTime(0);
-        setLoading(false);
-        await res.data && setTodaysData(res.data.question);
-        await res.data && setIsQuations(res.data.isQuation);
-      }).catch((err: any) => {
-        setLoading(false);
-        setIsCompleted(true);
-        console.log(err);
-      });
+      Getquation();
     }
 
   })
@@ -53,9 +55,9 @@ export default function DailyReport() {
       })
       .then((res: any) => {
         console.log("res", res);
-        setTime(100);
         if (isQuations === false)
           setIsCompleted(true);
+        Getquation();
       })
       .catch((err: any) => {
         console.log("err", err);
