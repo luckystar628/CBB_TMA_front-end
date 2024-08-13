@@ -37,6 +37,7 @@ export default function DailyReport() {
       })
       .then((res: any) => {
         console.log("res", res);
+        if(!isQuations)
         setIsCompleted(true);
       })
       .catch((err: any) => {
