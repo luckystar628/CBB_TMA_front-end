@@ -96,7 +96,7 @@ export default function Ranking() {
                     <span className="mr-3">{index + 1}.</span>
                     <span>{item.username}</span>
                   </div>
-                  <span>{item.score ? `${item.score} coins` : ""}</span>
+                  <span>{item.score ? `${item.score} coins` : `${item.score} coin`}</span>
                 </div>
               ))
             ) : tab == 1 && rankingList.length > 0 ? (
@@ -110,7 +110,7 @@ export default function Ranking() {
                     <span className="mr-3">{index + 1}.</span>
                     <span>{item.username}</span>
                   </div>
-                  <span>{item.score ? `${item.score} coins` : ""}</span>
+                  <span>{item.score ? `${item.score} coins` : `${item.score} coin`}</span>
                 </div>
               ))
             ) : tab == 2 && rankingList.length > 0 ? (
@@ -144,7 +144,7 @@ export default function Ranking() {
                     <span className="mr-3">{index + 1}.</span>
                     <span>{item.username}</span>
                   </div>
-                  <span>{item.score ? `${item.score} coins` : ""}</span>
+                  <span>{item.score ? `${item.score} coins` :`${item.score}coin`}</span>
                 </div>
               ))
             ) : (
