@@ -84,8 +84,8 @@ export default function DailyReport() {
       ) : (
         <>
           <div className="flex justify-center">
-            <div className="w-[80%] h-4 bg-gray-600 rounded-lg">
-              <div className={`h-4 bg-[#D5A9EF] rounded-lg`} style={{ width: `${time}%` }} />
+            <div className="w-[80%] h-4 bg-transparent rounded-lg">
+              <div className={`h-4 bg-[#D5A9EF] rounded-lg float-right`} style={{ width: `${100-time}%` }} />
             </div>
           </div>
           <div className="text-2xl max-sm:text-[16px]">
