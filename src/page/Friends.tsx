@@ -20,7 +20,7 @@ export default function Friends() {
     axios.post(`${backend}/friend/get`, {telID: user.id}).then(res => {
       setLoading(false);
       setRankingList(res.data.friends);
-    }).catch((error) => console.error(error))
+    }).catch((error) => console.log(error))
   }, [])
 
   const shareTelegram = (username: string) => {
@@ -30,10 +30,13 @@ export default function Friends() {
     //   `https://t.me/${username}?text=Look%21%20Some%20cool%20app%20here!`
     // );
     // utils.shareURL("https://t.me/mybot/myapp", "Look! Some cool app here!");
-
+    axios.post(`${backend}/friend/invite`, {userId: user.id, username: user.username, friendname:username}).then(res => {
+      console.log(res.data);
+    }).catch((error) => {console.log(error); });
     const text = encodeURIComponent("You did not answer the Nomad daily question today! Answer to climb the ranks and be rewarded by our airdrop.");
     const url = `https://t.me/${username}?text=${text}`;
     window.open(url, '_blank', 'width=400,height=500');
+    
     // window.open(`https://t.me/share/url?url=https://t.me/nomaddailybot?start=${user.id}&text=${textEncoded}`, '_blank', 'width=400,height=500');
   };
 
