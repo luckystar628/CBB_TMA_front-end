@@ -25,7 +25,7 @@ export default function DailyReport() {
           setIsCompleted(true);
           console.log(err);
         });
-    }, 10000);
+    }, 30000);
   });
   const [time, setTime] = useState<number>(0);
   useEffect(() => {
