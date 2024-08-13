@@ -24,7 +24,7 @@ export default function DailyReport() {
           setIsCompleted(true);
           console.log(err);
         });
-      }, 10000);
+      }, 3000);
   });
 
   const handleSubmit = async () => {
@@ -38,7 +38,7 @@ export default function DailyReport() {
       .then((res: any) => {
         console.log("res", res);
         if(!isQuations)
-        setIsCompleted(true);
+          setIsCompleted(true);
       })
       .catch((err: any) => {
         console.log("err", err);
