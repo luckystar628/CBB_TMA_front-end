@@ -24,7 +24,6 @@ export default function DailyReport() {
           setIsCompleted(true);
           console.log(err);
         });
-        else return;
     }, 3000);
   });
 
