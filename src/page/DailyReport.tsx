@@ -20,6 +20,7 @@ export default function DailyReport() {
         setLoading(false);
         res.data && setTodaysData(res.data.question);
         res.data && setIsQuations(res.data.isQuation);
+        console.log(isQuations);
         if(isQuations === false)
           clearInterval(intervalId);
       }).catch((err: any) => {
