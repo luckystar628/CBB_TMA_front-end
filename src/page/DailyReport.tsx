@@ -23,28 +23,25 @@ export default function DailyReport() {
   //   // Cleanup function to clear the interval when the component unmounts
   //   if(isQuations === false) clearInterval(intervalId);
   // }, []);
-  useEffect(() =>{
-    if(isQuations === true)
-      {
-        setTimeout(() => {
-          axios.get(`${backend}/question/get/${user.id}`).then((res: any) => {
-            setTime(0);
-            setLoading(false);
-            res.data && setTodaysData(res.data.question);
-            res.data && setIsQuations(res.data.isQuation);
-          }).catch((err: any) => {
-            setLoading(false);
-            setIsCompleted(true);
-            console.log(err);
-          });
-      }, 3000)
-    }
-  })
+ 
   useEffect(() => {
-    if (time <= 100)
+    if (time <= 100 && isQuations === true)
       setTimeout(() => {
         setTime(time + 1);
       }, 30);
+    if(time === 100) {
+      axios.get(`${backend}/question/get/${user.id}`).then((res: any) => {
+        setTime(0);
+        setLoading(false);
+        res.data && setTodaysData(res.data.question);
+        res.data && setIsQuations(res.data.isQuation);
+      }).catch((err: any) => {
+        setLoading(false);
+        setIsCompleted(true);
+        console.log(err);
+      });
+    }
+
   })
   const handleSubmit = async () => {
     axios
