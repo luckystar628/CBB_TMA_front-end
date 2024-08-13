@@ -30,11 +30,11 @@ export default function DailyReport() {
         setTime(time + 1);
       }, 30);
     if(time === 100) {
-      axios.get(`${backend}/question/get/${user.id}`).then((res: any) => {
+      axios.get(`${backend}/question/get/${user.id}`).then(async (res: any) => {
         setTime(0);
         setLoading(false);
-        res.data && setTodaysData(res.data.question);
-        res.data && setIsQuations(res.data.isQuation);
+        await res.data && setTodaysData(res.data.question);
+        await res.data && setIsQuations(res.data.isQuation);
       }).catch((err: any) => {
         setLoading(false);
         setIsCompleted(true);
