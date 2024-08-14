@@ -14,10 +14,10 @@ export default function DailyReport() {
   const [isQuations, setIsQuations] = useState<boolean>(true);
   const [time, setTime] = useState<number>(0);
   const [istrigger, setIsTrigger] = useState<boolean>(false);
-  if(isQuations === true)
-  useEffect(() => {
-    Getquation();
-  }, [])
+  if (isQuations === true)
+    useEffect(() => {
+      Getquation();
+    }, [])
   const Getquation = async () => {
     if (isQuations === false) return;
     await axios.get(`${backend}/question/get/${user.id}`).then(async (res: any) => {
@@ -34,16 +34,16 @@ export default function DailyReport() {
     });
   }
   useEffect(() => {
-    if (time <= 100 && isQuations === true && istrigger === true)
-      setTimeout(() => {
-        setTime(time + 1);
-      }, 30);
     if (time > 100) {
       setTodaysData(null);
       setTime(0);
       setIsTrigger(false);
       Getquation();
     }
+    if (time <= 100 && isQuations === true && istrigger === true)
+      setTimeout(() => {
+        setTime(time + 1);
+      }, 30);
 
   });
   const handleSubmit = async () => {
@@ -65,7 +65,7 @@ export default function DailyReport() {
       .catch((err: any) => {
         console.log("err", err);
       });
-      Getquation();
+    Getquation();
   };
   if (loading) return <LoadingPage />;
   return (
