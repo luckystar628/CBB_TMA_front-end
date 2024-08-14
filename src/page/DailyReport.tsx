@@ -17,11 +17,12 @@ export default function DailyReport() {
   useEffect(() => {
     Getquation();
   }, [])
-  const Getquation = () => {
+  const Getquation = async () => {
+    if(isQuations === false) return;
     setTodaysData(null);
     setTime(0);
     setIsTrigger(false);
-    axios.get(`${backend}/question/get/${user.id}`).then(async (res: any) => {
+    await axios.get(`${backend}/question/get/${user.id}`).then(async (res: any) => {
       setLoading(false);
       if (res.data) {
         await setTodaysData(res.data.question);
