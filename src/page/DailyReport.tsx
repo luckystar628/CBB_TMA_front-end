@@ -85,12 +85,13 @@ export default function DailyReport() {
         </>
       ) : (
         <>
-        {todaysData === null ? <LoadingPage/>:""}
+        {todaysData === null ? <LoadingPage/>:
           <div className="flex justify-center">
             <div className="w-[80%] h-4 bg-transparent rounded-lg">
               <div className={`h-4 bg-[#D5A9EF] rounded-lg float-right`} style={{ width: `${100 - time}%` }} />
             </div>
           </div>
+          }
           <div className="text-2xl max-sm:text-[16px]">
             {todaysData ? todaysData.question : "Loading..."}
           </div>
