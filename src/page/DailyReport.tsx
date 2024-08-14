@@ -11,23 +11,20 @@ export default function DailyReport() {
   const [selectedOption, setSelectedOption] = useState<number>(0);
   const [isCompleted, setIsCompleted] = useState<boolean>(false);
   const [loading, setLoading] = useState(true);
-  const [isQuations, setIsQuations] = useState<boolean>(true);
   const [time, setTime] = useState<number>(0);
-  const [istrigger, setIsTrigger] = useState<boolean>(false);
-  if (isQuations === true)
-    useEffect(() => {
-      Getquation();
-    }, [])
-  const Getquation = async () => {
-    if (isQuations === false) return;
+  const [questions, setQuestions] = useState<any>([]);
+  let i = 0;
+  useEffect(() => {
+     getQuestion();
+     setTodaysData(questions[i]);
+  }, [])
+  
+  const getQuestion = async () => {
     await axios.get(`${backend}/question/get/${user.id}`).then(async (res: any) => {
       setLoading(false);
       if (res.data) {
-        await setTodaysData(res.data.question);
-        await setIsQuations(res.data.isQuation);
+        await setQuestions(res.data.questions);
       }
-      setTime(0);
-      setIsTrigger(true); 
     }).catch((err: any) => {
       setLoading(false);
       setIsCompleted(true);
@@ -36,35 +33,32 @@ export default function DailyReport() {
   }
   useEffect(() => {
     if (time > 100) {
-      setTodaysData(null);
-      setIsTrigger(false);
-      Getquation();
+      i++; if(i > questions.length - 1) setIsCompleted(true);
+      setTodaysData(questions[i]);
     }
-    if (time <= 100 && isQuations === true && istrigger === true)
+    if (time <= 100)
       setTimeout(() => {
         setTime(time => time + 1);
       }, 30);
 
   });
   const handleSubmit = async () => {
-    await setTodaysData(null);
-    await setIsTrigger(false);
     axios
-    .post(`${backend}/question/setresult`, {
-      telID: user.id,
-      date: todaysData.date,
-      question: todaysData.question,
+      .post(`${backend}/question/setresult`, {
+        telID: user.id,
+        date: todaysData.date,
+        question: todaysData.question,
         result: todaysData.options[selectedOption],
       })
       .then((res: any) => {
         console.log("res", res);
-        if (isQuations === false)
           setIsCompleted(true);
       })
       .catch((err: any) => {
         console.log("err", err);
       });
-      await Getquation();
+      i++; if(i > questions.length - 1) setIsCompleted(true);
+      setTodaysData(questions[i]);
   };
   if (loading) return <LoadingPage />;
   return (
