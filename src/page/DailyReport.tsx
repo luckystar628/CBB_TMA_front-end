@@ -19,9 +19,6 @@ export default function DailyReport() {
   }, [])
   const Getquation = async () => {
     if (isQuations === false) return;
-    setTodaysData(null);
-    setTime(0);
-    setIsTrigger(false);
     await axios.get(`${backend}/question/get/${user.id}`).then(async (res: any) => {
       setLoading(false);
       if (res.data) {
@@ -41,6 +38,9 @@ export default function DailyReport() {
         setTime(time + 1);
       }, 30);
     if (time === 100) {
+      setTodaysData(null);
+      setTime(0);
+      setIsTrigger(false);
       Getquation();
     }
 
@@ -57,6 +57,9 @@ export default function DailyReport() {
         console.log("res", res);
         if (isQuations === false)
           setIsCompleted(true);
+        setTodaysData(null);
+        setTime(0);
+        setIsTrigger(false);
         Getquation();
       })
       .catch((err: any) => {
