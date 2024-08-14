@@ -27,7 +27,7 @@ export default function DailyReport() {
         await setIsQuations(res.data.isQuation);
       }
       setTime(0);
-      setIsTrigger(true);
+      setIsTrigger(true); 
     }).catch((err: any) => {
       setLoading(false);
       setIsCompleted(true);
