@@ -42,7 +42,7 @@ export default function DailyReport() {
     }
     if (time <= 100 && isQuations === true && istrigger === true)
       setTimeout(() => {
-        setTime(time + 1);
+        setTime(time => time + 1);
       }, 30);
 
   });
