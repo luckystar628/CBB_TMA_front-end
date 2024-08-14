@@ -18,11 +18,11 @@ export default function DailyReport() {
     Getquation();
   }, [])
   const Getquation = () => {
+    setTodaysData(null);
     setTime(0);
     setIsTrigger(false);
     axios.get(`${backend}/question/get/${user.id}`).then(async (res: any) => {
       setLoading(false);
-      setTodaysData(null);
       if (res.data) {
         await setTodaysData(res.data.question);
         await setIsQuations(res.data.isQuation);
