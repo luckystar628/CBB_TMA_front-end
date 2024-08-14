@@ -47,9 +47,9 @@ export default function DailyReport() {
 
   });
   const handleSubmit = async () => {
-    setTodaysData(null);
-    setTime(0);
-    setIsTrigger(false);
+    await setTodaysData(null);
+    await setTime(0);
+    await setIsTrigger(false);
     axios
       .post(`${backend}/question/setresult`, {
         telID: user.id,
@@ -65,7 +65,7 @@ export default function DailyReport() {
       .catch((err: any) => {
         console.log("err", err);
       });
-    Getquation();
+   await Getquation();
   };
   if (loading) return <LoadingPage />;
   return (
