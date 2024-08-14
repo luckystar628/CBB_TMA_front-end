@@ -24,7 +24,8 @@ export default function DailyReport() {
     await axios.get(`${backend}/question/get/${user.id}`).then(async (res: any) => {
       setLoading(false);
       if (res.data) {
-          setQuestions(res.data.questions);
+        console.log(res.data.questions);
+        setQuestions(res.data.questions);
       }
     }).catch((err: any) => {
       setLoading(false);
