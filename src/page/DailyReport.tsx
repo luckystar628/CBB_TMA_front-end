@@ -13,19 +13,21 @@ export default function DailyReport() {
   const [loading, setLoading] = useState(true);
   const [time, setTime] = useState<number>(0);
   const [questions, setQuestions] = useState<any>([]);
+  const [istigger, setIsTigger] = useState<boolean>(false);
   let i = 0;
   useEffect(() => {
-     getQuestion();
-     setTodaysData(questions[i]);
-     console.log(questions);
+    getQuestion();
   }, [])
-  
+
   const getQuestion = async () => {
     await axios.get(`${backend}/question/get/${user.id}`).then(async (res: any) => {
       setLoading(false);
       if (res.data) {
         console.log(res.data.questions);
         setQuestions(res.data.questions);
+        setTodaysData(questions[i]);
+        console.log(questions);
+        setIsTigger(true);
       }
     }).catch((err: any) => {
       setLoading(false);
@@ -34,18 +36,21 @@ export default function DailyReport() {
     });
   }
   useEffect(() => {
-    if (time > 100) {
-      i++; 
-      if(i > questions.length - 1) setIsCompleted(true);
-      setTodaysData(questions[i]);
-      setTime(0);
-      console.log(time);
-      console.log(todaysData);
+    if(istigger)
+    {
+      if (time > 100) {
+        i++;
+        if (i > questions.length - 1) setIsCompleted(true);
+        setTodaysData(questions[i]);
+        setTime(0);
+        console.log(time);
+        console.log(todaysData);
+      }
+      if (time <= 100)
+        setTimeout(() => {
+          setTime(time => time + 1);
+        }, 30);
     }
-    if (time <= 100)
-      setTimeout(() => {
-        setTime(time => time + 1);
-      }, 30);
 
   });
   const handleSubmit = async () => {
@@ -58,13 +63,13 @@ export default function DailyReport() {
       })
       .then((res: any) => {
         console.log("res", res);
-        if(i===questions.length - 1) setIsCompleted(true);
+        if (i === questions.length - 1) setIsCompleted(true);
       })
       .catch((err: any) => {
         console.log("err", err);
       });
-      i++; if(i > questions.length - 1) setIsCompleted(true);
-      setTodaysData(questions[i]);
+    i++; if (i > questions.length - 1) setIsCompleted(true);
+    setTodaysData(questions[i]);
   };
   if (loading) return <LoadingPage />;
   return (
@@ -89,7 +94,7 @@ export default function DailyReport() {
         </>
       ) : (
         <>
-          {todaysData === null ? <LoadingPage /> :
+          {!todaysData? <LoadingPage /> :
             <>
               <div className="flex justify-center">
                 <div className="w-[80%] h-4 bg-transparent rounded-lg">
