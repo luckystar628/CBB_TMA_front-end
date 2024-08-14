@@ -13,10 +13,11 @@ export default function DailyReport() {
   const [loading, setLoading] = useState(true);
   const [time, setTime] = useState<number>(0);
   const [questions, setQuestions] = useState<any>([]);
-  let i = 0;
+  let i = 1;
   useEffect(() => {
      getQuestion();
      setTodaysData(questions[i]);
+     console.log("questions", questions);
   }, [])
   
   const getQuestion = async () => {
@@ -52,7 +53,7 @@ export default function DailyReport() {
       })
       .then((res: any) => {
         console.log("res", res);
-          setIsCompleted(true);
+        if(i===questions.length - 1) setIsCompleted(true);
       })
       .catch((err: any) => {
         console.log("err", err);
