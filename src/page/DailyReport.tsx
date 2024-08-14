@@ -36,9 +36,9 @@ export default function DailyReport() {
   useEffect(() => {
     if (time > 100) {
       setTodaysData(null);
-      setTime(0);
       setIsTrigger(false);
       Getquation();
+      setTime(0);
     }
     if (time <= 100 && isQuations === true && istrigger === true)
       setTimeout(() => {
@@ -48,13 +48,12 @@ export default function DailyReport() {
   });
   const handleSubmit = async () => {
     await setTodaysData(null);
-    await setTime(0);
     await setIsTrigger(false);
     axios
-      .post(`${backend}/question/setresult`, {
-        telID: user.id,
-        date: todaysData.date,
-        question: todaysData.question,
+    .post(`${backend}/question/setresult`, {
+      telID: user.id,
+      date: todaysData.date,
+      question: todaysData.question,
         result: todaysData.options[selectedOption],
       })
       .then((res: any) => {
@@ -65,7 +64,8 @@ export default function DailyReport() {
       .catch((err: any) => {
         console.log("err", err);
       });
-   await Getquation();
+      await Getquation();
+      await setTime(0);
   };
   if (loading) return <LoadingPage />;
   return (
