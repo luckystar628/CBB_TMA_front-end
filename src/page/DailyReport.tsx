@@ -22,9 +22,10 @@ export default function DailyReport() {
   
   const getQuestion = async () => {
     await axios.get(`${backend}/question/get/${user.id}`).then(async (res: any) => {
+      console.log(res);
       setLoading(false);
       if (res.data) {
-        await setQuestions(res.data.questions);
+          setQuestions(res.data.questions);
       }
     }).catch((err: any) => {
       setLoading(false);
