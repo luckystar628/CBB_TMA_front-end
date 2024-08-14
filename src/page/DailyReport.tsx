@@ -14,17 +14,20 @@ export default function DailyReport() {
   const [isQuations, setIsQuations] = useState<boolean>(true);
   const [time, setTime] = useState<number>(0);
   const [istrigger, setIsTrigger] = useState<boolean>(false);
-  useEffect(() =>{
+  useEffect(() => {
     Getquation();
-  },[])
-  const Getquation = () =>{
+  }, [])
+  const Getquation = () => {
     setTime(0);
     setIsTrigger(false);
     axios.get(`${backend}/question/get/${user.id}`).then(async (res: any) => {
       setLoading(false);
-      await res.data && setTodaysData(res.data.question);
-      await res.data && setIsQuations(res.data.isQuation);
-      setIsTrigger(!istrigger);
+      setTodaysData(null);
+      if (res.data) {
+        await setTodaysData(res.data.question);
+        await setIsQuations(res.data.isQuation);
+      }
+      setIsTrigger(true);
     }).catch((err: any) => {
       setLoading(false);
       setIsCompleted(true);
@@ -32,11 +35,11 @@ export default function DailyReport() {
     });
   }
   useEffect(() => {
-    if (time <= 100 && isQuations === true && istrigger === true) 
+    if (time <= 100 && isQuations === true && istrigger === true)
       setTimeout(() => {
         setTime(time + 1);
       }, 30);
-    if(time === 100) {
+    if (time === 100) {
       Getquation();
     }
 
@@ -82,9 +85,10 @@ export default function DailyReport() {
         </>
       ) : (
         <>
+        {todaysData === null ? <LoadingPage/>:""}
           <div className="flex justify-center">
             <div className="w-[80%] h-4 bg-transparent rounded-lg">
-              <div className={`h-4 bg-[#D5A9EF] rounded-lg float-right`} style={{ width: `${100-time}%` }} />
+              <div className={`h-4 bg-[#D5A9EF] rounded-lg float-right`} style={{ width: `${100 - time}%` }} />
             </div>
           </div>
           <div className="text-2xl max-sm:text-[16px]">
