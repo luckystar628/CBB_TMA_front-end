@@ -16,8 +16,8 @@ export default function DailyReport() {
   let i = 0;
   useEffect(() => {
      getQuestion();
-     console.log(questions);
      setTodaysData(questions[i]);
+     console.log(questions);
   }, [])
   
   const getQuestion = async () => {
@@ -34,8 +34,12 @@ export default function DailyReport() {
   }
   useEffect(() => {
     if (time > 100) {
-      i++; if(i > questions.length - 1) setIsCompleted(true);
+      i++; 
+      if(i > questions.length - 1) setIsCompleted(true);
       setTodaysData(questions[i]);
+      setTime(0);
+      console.log(time);
+      console.log(todaysData);
     }
     if (time <= 100)
       setTimeout(() => {
