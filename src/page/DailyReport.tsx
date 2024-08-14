@@ -13,16 +13,15 @@ export default function DailyReport() {
   const [loading, setLoading] = useState(true);
   const [time, setTime] = useState<number>(0);
   const [questions, setQuestions] = useState<any>([]);
-  let i = 1;
+  let i = 0;
   useEffect(() => {
      getQuestion();
+     console.log(questions);
      setTodaysData(questions[i]);
-     console.log("questions", questions);
   }, [])
   
   const getQuestion = async () => {
     await axios.get(`${backend}/question/get/${user.id}`).then(async (res: any) => {
-      console.log(res);
       setLoading(false);
       if (res.data) {
           setQuestions(res.data.questions);
