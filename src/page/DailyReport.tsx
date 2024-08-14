@@ -14,6 +14,7 @@ export default function DailyReport() {
   const [isQuations, setIsQuations] = useState<boolean>(true);
   const [time, setTime] = useState<number>(0);
   const [istrigger, setIsTrigger] = useState<boolean>(false);
+  if(isQuations === true)
   useEffect(() => {
     Getquation();
   }, [])
@@ -37,10 +38,10 @@ export default function DailyReport() {
       setTimeout(() => {
         setTime(time + 1);
       }, 30);
-    if (time === 100) {
+    if (time > 100) {
       setTodaysData(null);
       setTime(0);
-      setIsTrigger(true);
+      setIsTrigger(false);
       Getquation();
     }
 
@@ -60,11 +61,11 @@ export default function DailyReport() {
         console.log("res", res);
         if (isQuations === false)
           setIsCompleted(true);
-        Getquation();
       })
       .catch((err: any) => {
         console.log("err", err);
       });
+      Getquation();
   };
   if (loading) return <LoadingPage />;
   return (
