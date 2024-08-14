@@ -40,7 +40,7 @@ export default function DailyReport() {
     if (time === 100) {
       setTodaysData(null);
       setTime(0);
-      setIsTrigger(false);
+      setIsTrigger(true);
       Getquation();
     }
 
