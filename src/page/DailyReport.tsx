@@ -39,11 +39,11 @@ export default function DailyReport() {
     if(istigger)
     {
       if (time > 100) {
-        i++;
+        i = i + 1;
         if (i > questions.length - 1) setIsCompleted(true);
         setTodaysData(questions[i]);
         setTime(0);
-        console.log(time);
+        console.log(time, i);
         console.log(todaysData);
       }
       if (time <= 100)
