@@ -18,7 +18,7 @@ export default function DailyReport() {
     Getquation();
   }, [])
   const Getquation = async () => {
-    if(isQuations === false) return;
+    if (isQuations === false) return;
     setTodaysData(null);
     setTime(0);
     setIsTrigger(false);
@@ -86,42 +86,45 @@ export default function DailyReport() {
         </>
       ) : (
         <>
-        {todaysData === null ? <LoadingPage/>:
-          <div className="flex justify-center">
-            <div className="w-[80%] h-4 bg-transparent rounded-lg">
-              <div className={`h-4 bg-[#D5A9EF] rounded-lg float-right`} style={{ width: `${100 - time}%` }} />
-            </div>
-          </div>
+          {todaysData === null ? <LoadingPage /> :
+            <>
+              <div className="flex justify-center">
+                <div className="w-[80%] h-4 bg-transparent rounded-lg">
+                  <div className={`h-4 bg-[#D5A9EF] rounded-lg float-right`} style={{ width: `${100 - time}%` }} />
+                </div>
+              </div>
+
+              <div className="text-2xl max-sm:text-[16px]">
+                {todaysData ? todaysData.question : "Loading..."}
+              </div>
+              <div className="gap-5 mt-5 flex flex-col overflow-auto h-[300px] scrollbar-hidden">
+                {todaysData &&
+                  todaysData.options &&
+                  todaysData.options.map(
+                    (option: string, index: number) => {
+                      return (
+                        <div
+                          key={index}
+                          className={`max-sm:text-[14px] transition shadow-lg ease-in-out cursor-pointer py-5 max-sm:py-3 rounded-xl border-2 hover:bg-opacity-60 active:bg-opacity-50 ${selectedOption === index
+                            ? "bg-[#1A1A1A] bg-opacity-100 border-[#1A1A1A]"
+                            : "bg-[#625f63] bg-opacity-30 border-[#ffffff33]"
+                            }`}
+                          onClick={() => setSelectedOption(index)}
+                        >
+                          {option}
+                        </div>
+                      );
+                    }
+                  )}
+              </div>
+              <div
+                className="mt-10 max-sm:mt-5 py-8 max-sm:py-5 text-center bg-white rounded-md hover:opacity-80 active:opacity-50 text-black cursor-pointer"
+                onClick={() => handleSubmit()}
+              >
+                submit
+              </div>
+            </>
           }
-          <div className="text-2xl max-sm:text-[16px]">
-            {todaysData ? todaysData.question : "Loading..."}
-          </div>
-          <div className="gap-5 mt-5 flex flex-col overflow-auto h-[300px] scrollbar-hidden">
-            {todaysData &&
-              todaysData.options &&
-              todaysData.options.map(
-                (option: string, index: number) => {
-                  return (
-                    <div
-                      key={index}
-                      className={`max-sm:text-[14px] transition shadow-lg ease-in-out cursor-pointer py-5 max-sm:py-3 rounded-xl border-2 hover:bg-opacity-60 active:bg-opacity-50 ${selectedOption === index
-                        ? "bg-[#1A1A1A] bg-opacity-100 border-[#1A1A1A]"
-                        : "bg-[#625f63] bg-opacity-30 border-[#ffffff33]"
-                        }`}
-                      onClick={() => setSelectedOption(index)}
-                    >
-                      {option}
-                    </div>
-                  );
-                }
-              )}
-          </div>
-          <div
-            className="mt-10 max-sm:mt-5 py-8 max-sm:py-5 text-center bg-white rounded-md hover:opacity-80 active:opacity-50 text-black cursor-pointer"
-            onClick={() => handleSubmit()}
-          >
-            submit
-          </div>
         </>
       )}
     </div>
