@@ -26,6 +26,7 @@ export default function DailyReport() {
         await setTodaysData(res.data.question);
         await setIsQuations(res.data.isQuation);
       }
+      setTime(0);
       setIsTrigger(true);
     }).catch((err: any) => {
       setLoading(false);
@@ -38,7 +39,6 @@ export default function DailyReport() {
       setTodaysData(null);
       setIsTrigger(false);
       Getquation();
-      setTime(0);
     }
     if (time <= 100 && isQuations === true && istrigger === true)
       setTimeout(() => {
@@ -65,7 +65,6 @@ export default function DailyReport() {
         console.log("err", err);
       });
       await Getquation();
-      await setTime(0);
   };
   if (loading) return <LoadingPage />;
   return (
