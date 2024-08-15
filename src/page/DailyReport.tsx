@@ -18,8 +18,6 @@ export default function DailyReport() {
   useEffect(() => {
     getQuestion();
   }, [])
-  console.log(setTimeout(() => {
-  }, 0));
   const getQuestion = async () => {
     await axios.get(`${backend}/question/get/${user.id}`).then(async (res: any) => {
       setLoading(false);
@@ -70,7 +68,6 @@ export default function DailyReport() {
       .catch((err: any) => {
         console.log("err", err);
       });
-      clearTimeout(0);
     setTime(100);
   };
   if (loading) return <LoadingPage />;
