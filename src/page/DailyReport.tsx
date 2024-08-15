@@ -97,7 +97,7 @@ export default function DailyReport() {
             <>
               <div className="flex justify-center">
                 <div className="w-[80%] h-4 bg-transparent rounded-lg">
-                  <div className={`h-4 bg-[#D5A9EF] rounded-lg float-right`} style={{ width: `${100 - time}%` }} />
+                  <div className={`h-4 bg-[#D5A9EF] rounded-lg float-right transition duration-75`} style={{ width: `${100 - time}%` }} />
                 </div>
               </div>
 
