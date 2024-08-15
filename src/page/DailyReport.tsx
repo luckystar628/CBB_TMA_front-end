@@ -68,6 +68,7 @@ export default function DailyReport() {
       .catch((err: any) => {
         console.log("err", err);
       });
+      clearTimeout;
     setTime(100);
   };
   if (loading) return <LoadingPage />;
