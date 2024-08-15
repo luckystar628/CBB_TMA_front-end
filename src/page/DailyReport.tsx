@@ -68,11 +68,7 @@ export default function DailyReport() {
       .catch((err: any) => {
         console.log("err", err);
       });
-    setIndex(index => index+1); 
-    if (index > questions.length - 1) {setIsCompleted(true); setIsTigger(false);}
-    setTime(0);setIsTigger(false);
-    setTodaysData(questions[index]);
-    setIsTigger(true);
+    setTime(100);
   };
   if (loading) return <LoadingPage />;
   return (
