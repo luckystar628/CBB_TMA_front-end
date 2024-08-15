@@ -39,16 +39,17 @@ export default function DailyReport() {
     if(istigger)
     {
       if (time > 100) {
-        if (index > questions.length - 1) setIsCompleted(true);
+        if (index > questions.length - 1) {setIsCompleted(true); setIsTigger(false);}
         setIndex(index => index + 1);
         setTodaysData(questions[index]);
         setTime(0);
-        console.log(time, index);
+        console.log(time, index, questions.length);
         console.log(todaysData);
       }
       if (time <= 100)
         setTimeout(() => {
           setTime(time => time + 1);
+          console.log(time);
         }, 30);
     }
 
