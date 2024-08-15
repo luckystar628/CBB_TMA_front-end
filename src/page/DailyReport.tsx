@@ -14,7 +14,7 @@ export default function DailyReport() {
   const [time, setTime] = useState<number>(0);
   const [questions, setQuestions] = useState<any>([]);
   const [istigger, setIsTigger] = useState<boolean>(false);
-  const [index, setIndex] = useState(1);
+  const [index, setIndex] = useState(0);
   useEffect(() => {
     getQuestion();
   }, [])
@@ -27,6 +27,7 @@ export default function DailyReport() {
         setQuestions(res.data.questions);
         setTodaysData(questions[index]);
         console.log(questions);
+        console.log(todaysData);
         setIsTigger(true);
       }
     }).catch((err: any) => {
@@ -43,7 +44,6 @@ export default function DailyReport() {
         setIndex(index => index + 1);
         setTodaysData(questions[index]);
         setTime(0);
-        console.log(time, index, questions.length);
         console.log(todaysData);
       }
       if (time <= 100)
