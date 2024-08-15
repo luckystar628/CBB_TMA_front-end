@@ -49,7 +49,6 @@ export default function DailyReport() {
       if (time <= 100)
         setTimeout(() => {
           setTime(time => time + 1);
-          console.log(time);
         }, 30);
     }
 
@@ -69,7 +68,8 @@ export default function DailyReport() {
       .catch((err: any) => {
         console.log("err", err);
       });
-    setIndex(index => index+1); if (index > questions.length - 1) setIsCompleted(true);
+    setIndex(index => index+1); if (index > questions.length - 1) {setIsCompleted(true); setIsTigger(false);}
+    setTime(0);
     setTodaysData(questions[index]);
   };
   if (loading) return <LoadingPage />;
