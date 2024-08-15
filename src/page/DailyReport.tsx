@@ -14,7 +14,7 @@ export default function DailyReport() {
   const [time, setTime] = useState<number>(0);
   const [questions, setQuestions] = useState<any>([]);
   const [istigger, setIsTigger] = useState<boolean>(false);
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(1);
   useEffect(() => {
     getQuestion();
   }, [])
@@ -68,9 +68,11 @@ export default function DailyReport() {
       .catch((err: any) => {
         console.log("err", err);
       });
-    setIndex(index => index+1); if (index > questions.length - 1) {setIsCompleted(true); setIsTigger(false);}
-    setTime(0);
+    setIndex(index => index+1); 
+    if (index > questions.length - 1) {setIsCompleted(true); setIsTigger(false);}
+    setTime(0);setIsTigger(false);
     setTodaysData(questions[index]);
+    setIsTigger(true);
   };
   if (loading) return <LoadingPage />;
   return (
