@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useGlobalContext } from "../context/GlobalContext";
 import axios from "axios";
 import LoadingPage from "./Loading";
@@ -15,6 +15,7 @@ export default function DailyReport() {
   const [questions, setQuestions] = useState<any>([]);
   const [istigger, setIsTigger] = useState<boolean>(false);
   const [index, setIndex] = useState(0);
+  const timeRef:any = useRef();
   useEffect(() => {
     getQuestion();
   }, [])
@@ -36,20 +37,20 @@ export default function DailyReport() {
     });
   }
   useEffect(() => {
-    if(istigger)
-    {
+    if (istigger) {
       if (time > 100) {
-        if (index > questions.length - 1) {setIsCompleted(true); setIsTigger(false);}
+        if (index > questions.length - 1) { setIsCompleted(true); setIsTigger(false); }
         setIndex(index => index + 1);
         setTodaysData(questions[index]);
         setTime(0);
         console.log(todaysData);
       }
-      if (time <= 100)
-        setTimeout(() => {
+      if (time <= 100) {
+        timeRef.current = setTimeout(() => {
           setTime(time => time + 1);
         }, 30);
-        
+      }
+
     }
 
   });
@@ -69,6 +70,7 @@ export default function DailyReport() {
         console.log("err", err);
       });
     setTime(100);
+    clearTimeout(timeRef.current);
   };
   if (loading) return <LoadingPage />;
   return (
@@ -93,7 +95,7 @@ export default function DailyReport() {
         </>
       ) : (
         <>
-          {!todaysData? <LoadingPage /> :
+          {!todaysData ? <LoadingPage /> :
             <>
               <div className="flex justify-center">
                 <div className="w-[80%] h-4 bg-transparent rounded-lg">
