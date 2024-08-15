@@ -63,13 +63,13 @@ export default function DailyReport() {
       })
       .then((res: any) => {
         console.log("res", res);
-        if (i === questions.length - 1) setIsCompleted(true);
+        if (index === questions.length - 1) setIsCompleted(true);
       })
       .catch((err: any) => {
         console.log("err", err);
       });
-    i++; if (i > questions.length - 1) setIsCompleted(true);
-    setTodaysData(questions[i]);
+    setIndex(index => index+1); if (index > questions.length - 1) setIsCompleted(true);
+    setTodaysData(questions[index]);
   };
   if (loading) return <LoadingPage />;
   return (
