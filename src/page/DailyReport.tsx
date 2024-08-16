@@ -6,6 +6,7 @@ import ShareReferral from "../component/ShareReferral";
 
 export default function DailyReport() {
   const { user } = useGlobalContext();
+  const {questionCounter, setQuestionCounter } = useGlobalContext();
   const backend = import.meta.env.VITE_BACKEND_URL;
   const [todaysData, setTodaysData] = useState<any>({});
   const [selectedOption, setSelectedOption] = useState<number>(-1);
@@ -15,11 +16,9 @@ export default function DailyReport() {
   const [questions, setQuestions] = useState<any>([]);
   const [istigger, setIsTigger] = useState<boolean>(false);
   const [index, setIndex] = useState(0);
-  const [questionCount, setQuestionCount] = useState<any>(0);
   const timeRef: any = useRef();
   useEffect(() => {
     getQuestion();
-    if (localStorage.getItem('questionCounter')) setQuestionCount(localStorage.getItem('questionCounter'));
   }, [])
   const getQuestion = async () => {
     await axios.get(`${backend}/question/get/${user.id}`).then(async (res: any) => {
@@ -58,7 +57,7 @@ export default function DailyReport() {
 
   });
   const handleSubmit = async () => {
-    setQuestionCount(questionCount + 1);
+    setQuestionCounter(questionCounter + 1);
     clearTimeout(timeRef.current);
     axios
       .post(`${backend}/question/setresult`, {
@@ -69,7 +68,7 @@ export default function DailyReport() {
       })
       .then((res: any) => {
         console.log("res", res);
-        if (index === questions.length - 1) { setIsCompleted(true); localStorage.setItem('questionCounter', questionCount); }
+        if (index === questions.length - 1) { setIsCompleted(true); }
       })
       .catch((err: any) => {
         console.log("err", err);
@@ -84,7 +83,7 @@ export default function DailyReport() {
           <div className="flex flex-col gap-10 max-sm:gap-6 justify-center h-[300px] ">
             <div className="text-xl font-[600]">
               congratulations! you earned <br />
-              <span className="text-2xl font-bold">{questionCount * 5000} coins</span>
+              <span className="text-2xl font-bold">{questionCounter * 5000} coins</span>
             </div>
             <div className="text-xl font-[600]">thank you for your response!</div>
             <div className="font-light text-xl">
