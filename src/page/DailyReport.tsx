@@ -14,7 +14,7 @@ export default function DailyReport() {
   const [time, setTime] = useState<number>(0);
   const [questions, setQuestions] = useState<any>([]);
   const [istigger, setIsTigger] = useState<boolean>(false);
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(-1);
   const timeRef:any = useRef();
   useEffect(() => {
     getQuestion();
@@ -42,6 +42,7 @@ export default function DailyReport() {
         if (index > questions.length - 1) { setIsCompleted(true); setIsTigger(false); }
         setIndex(index => index + 1);
         setTodaysData(questions[index]);
+        setIndex(-1);
         setTime(0);
         console.log(todaysData);
       }
