@@ -55,6 +55,7 @@ export default function DailyReport() {
 
   });
   const handleSubmit = async () => {
+    clearTimeout(timeRef.current);
     axios
       .post(`${backend}/question/setresult`, {
         telID: user.id,
@@ -70,7 +71,6 @@ export default function DailyReport() {
         console.log("err", err);
       });
     setTime(100);
-    clearTimeout(timeRef.current);
   };
   if (loading) return <LoadingPage />;
   return (
@@ -98,7 +98,7 @@ export default function DailyReport() {
           {!todaysData ? <LoadingPage /> :
             <>
               <div className="flex justify-between items-center">
-                <img src="image/clock.svg" style={{fill:"#D5A9EF"}} className="h-6 w-6" alt="clock" />
+                <img src="image/clock.svg" className="h-6 w-6" alt="clock" />
                 <div className="w-[80%] h-4 bg-transparent rounded-lg">
                   <div className={`h-4 bg-[#D5A9EF] rounded-lg float-right transition duration-75`} style={{ width: `${100 - time}%` }} />
                 </div>
