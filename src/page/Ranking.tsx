@@ -85,7 +85,8 @@ export default function Ranking() {
         </ul>
         {loading ? <div className="flex justify-center items-center h-full"><LoadingPage /></div>:
           <div className="mx-10 max-sm:mx-0 overflow-auto scrollbar-hidden my-2 h-[200px]">
-            {tab == 0 && rankingList.length > 0 ? (
+            {rankingList.length === 0? <div className="w-full justify-center items-center"> No result</div> 
+            :tab == 0 && rankingList.length > 0 ? (
               rankingList.map((item: any, index: any) => (
                 <div
                   className={`flex justify-between items-center mx-5 p-3 ${item.username == user.username &&
