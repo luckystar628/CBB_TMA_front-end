@@ -15,10 +15,11 @@ export default function DailyReport() {
   const [questions, setQuestions] = useState<any>([]);
   const [istigger, setIsTigger] = useState<boolean>(false);
   const [index, setIndex] = useState(0);
-  const [questionCount, setQuestionCount] = useState<number>(0);
-  const timeRef:any = useRef();
+  const [questionCount, setQuestionCount] = useState<any>(0);
+  const timeRef: any = useRef();
   useEffect(() => {
     getQuestion();
+    if (localStorage.getItem('questionCounter')) setQuestionCount(localStorage.getItem('questionCounter'));
   }, [])
   const getQuestion = async () => {
     await axios.get(`${backend}/question/get/${user.id}`).then(async (res: any) => {
@@ -68,7 +69,7 @@ export default function DailyReport() {
       })
       .then((res: any) => {
         console.log("res", res);
-        if (index === questions.length - 1) setIsCompleted(true);
+        if (index === questions.length - 1) { setIsCompleted(true); localStorage.setItem('questionCounter', questionCount); }
       })
       .catch((err: any) => {
         console.log("err", err);
@@ -122,7 +123,7 @@ export default function DailyReport() {
                             ? "bg-[#1A1A1A] bg-opacity-100 border-[#1A1A1A]"
                             : "bg-[#625f63] bg-opacity-30 border-[#ffffff33]"
                             }`}
-                          onClick={() => {setSelectedOption(index); clearTimeout(timeRef.current); }}
+                          onClick={() => { setSelectedOption(index); clearTimeout(timeRef.current); }}
                         >
                           {option}
                         </div>
