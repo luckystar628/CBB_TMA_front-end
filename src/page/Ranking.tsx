@@ -153,12 +153,12 @@ export default function Ranking() {
             )}
           </div>
         }
-        {rankingList.length && currentUser && (
+        {rankingList.length&& currentUser && (
           <div
             className={`flex justify-between items-center mx-5 p-3 rounded-2xl bg-[#232124] bg-opacity-30 border-[#ffffff33] border-2 mb-1`}
           >
             <div>
-              <span className="mr-3">{currentUser.rank}.</span>
+              <span className="mr-3">{currentUser.rank!==0? currentUser.rank:""}.</span>
               <span>{currentUser.username}</span>
             </div>
             <span>
