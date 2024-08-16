@@ -97,9 +97,9 @@ export default function DailyReport() {
         <>
           {!todaysData ? <LoadingPage /> :
             <>
-              <div className="flex justify-between items-center">
+              <div className="flex flex-col justify-center items-center">
                 <img src="image/clock.svg" className="h-6 w-6" alt="clock" />
-                <div className="w-[80%] h-4 bg-transparent rounded-lg">
+                <div className="w-[80%] h-4 m-4 bg-transparent rounded-lg">
                   <div className={`h-4 bg-[#D5A9EF] rounded-lg float-right transition duration-75`} style={{ width: `${100 - time}%` }} />
                 </div>
               </div>
