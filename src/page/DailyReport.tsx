@@ -8,13 +8,13 @@ export default function DailyReport() {
   const { user } = useGlobalContext();
   const backend = import.meta.env.VITE_BACKEND_URL;
   const [todaysData, setTodaysData] = useState<any>({});
-  const [selectedOption, setSelectedOption] = useState<number>(0);
+  const [selectedOption, setSelectedOption] = useState<number>(-1);
   const [isCompleted, setIsCompleted] = useState<boolean>(false);
   const [loading, setLoading] = useState(true);
   const [time, setTime] = useState<number>(0);
   const [questions, setQuestions] = useState<any>([]);
   const [istigger, setIsTigger] = useState<boolean>(false);
-  const [index, setIndex] = useState(-1);
+  const [index, setIndex] = useState(0);
   const timeRef:any = useRef();
   useEffect(() => {
     getQuestion();
@@ -42,7 +42,7 @@ export default function DailyReport() {
         if (index > questions.length - 1) { setIsCompleted(true); setIsTigger(false); }
         setIndex(index => index + 1);
         setTodaysData(questions[index]);
-        setIndex(-1);
+        setSelectedOption(-1);
         setTime(0);
         console.log(todaysData);
       }
