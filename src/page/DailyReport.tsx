@@ -15,6 +15,7 @@ export default function DailyReport() {
   const [questions, setQuestions] = useState<any>([]);
   const [istigger, setIsTigger] = useState<boolean>(false);
   const [index, setIndex] = useState(0);
+  const [questionCount, setQuestionCount] = useState<number>(0);
   const timeRef:any = useRef();
   useEffect(() => {
     getQuestion();
@@ -56,6 +57,7 @@ export default function DailyReport() {
 
   });
   const handleSubmit = async () => {
+    setQuestionCount(questionCount + 1);
     clearTimeout(timeRef.current);
     axios
       .post(`${backend}/question/setresult`, {
@@ -81,7 +83,7 @@ export default function DailyReport() {
           <div className="flex flex-col gap-10 max-sm:gap-6 justify-center h-[300px] ">
             <div className="text-xl font-[600]">
               congratulations! you earned <br />
-              <span className="text-2xl font-bold">5000 coins</span>
+              <span className="text-2xl font-bold">{questionCount * 5000} coins</span>
             </div>
             <div className="text-xl font-[600]">thank you for your response!</div>
             <div className="font-light text-xl">
