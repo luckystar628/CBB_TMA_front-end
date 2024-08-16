@@ -119,7 +119,7 @@ export default function DailyReport() {
                             ? "bg-[#1A1A1A] bg-opacity-100 border-[#1A1A1A]"
                             : "bg-[#625f63] bg-opacity-30 border-[#ffffff33]"
                             }`}
-                          onClick={() => setSelectedOption(index)}
+                          onClick={() => {setSelectedOption(index); clearTimeout(timeRef.current); }}
                         >
                           {option}
                         </div>
