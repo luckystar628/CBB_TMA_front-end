@@ -39,7 +39,7 @@ export default function DailyReport() {
   }
   useEffect(() => {
     if (istigger) {
-      if (time > 100) {
+      if (time > 5000) {
         if (index > questions.length - 1) { setIsCompleted(true); setIsTigger(false); }
         setIndex(index => index + 1);
         setTodaysData(questions[index]);
@@ -47,7 +47,7 @@ export default function DailyReport() {
         setTime(0);
         console.log(todaysData);
       }
-      if (time <= 100) {
+      if (time <= 10000) {
         timeRef.current = setTimeout(() => {
           setTime(time => time + 1);
         }, 30);
@@ -73,7 +73,7 @@ export default function DailyReport() {
       .catch((err: any) => {
         console.log("err", err);
       });
-    setTime(100);
+    setTime(5000);
   };
   if (loading) return <LoadingPage />;
   return (
@@ -103,7 +103,7 @@ export default function DailyReport() {
               <div className="flex flex-col justify-center items-center">
                 <img src="image/clock.svg" className="h-6 w-6" alt="clock" />
                 <div className="w-[80%] h-4 m-4 bg-transparent rounded-lg">
-                  <div className={`h-4 bg-[#D5A9EF] rounded-lg float-right transition duration-75`} style={{ width: `${100 - time}%` }} />
+                  <div className={`h-4  bg-[#D5A9EF] rounded-lg float-right transition duration-75`} style={{ width: `${100 - time}%` }} />
                 </div>
               </div>
 
