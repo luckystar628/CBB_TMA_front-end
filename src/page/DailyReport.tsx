@@ -47,7 +47,7 @@ export default function DailyReport() {
         setTime(0);
         console.log(todaysData);
       }
-      if (time <= 10000) {
+      if (time <= 5000) {
         timeRef.current = setTimeout(() => {
           setTime(time => time + 1);
         }, 30);
