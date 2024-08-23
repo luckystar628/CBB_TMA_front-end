@@ -37,6 +37,7 @@ export default function DailyReport() {
       console.log(err);
     });
   }
+  //
   useEffect(() => {
     if (istigger) {
       if (time > 5000) {
